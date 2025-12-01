@@ -1,0 +1,64 @@
+.sidebar-container {
+  @apply bg-white fixed top-0 left-0 z-[60] flex h-screen flex-col gap-4 px-3 transition-all duration-300 ease-in-out md:gap-6 pt-4 md:pt-6 lg:pb-3 border-r border-mid-gray-1;
+}
+
+.sidebar-arrow-icon {
+  @apply hidden md:flex justify-center items-center text-mid-gray-1 w-[26px] h-[26px] absolute right-0 top-[23px] translate-x-1/2 transition-transform duration-200 cursor-pointer rounded-full bg-white border border-gray-100;
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+}
+
+.sidebar-arrow-icon-active {
+  @apply rotate-180;
+}
+
+.menu-item {
+  @apply transition-none text-text-1 h-[44px] rounded-[26px] relative flex w-full items-center gap-2 px-3 text-base leading-6 font-medium;
+}
+
+.menu-item-active {
+  @apply text-white [&>path]:stroke-white bg-primary-500;
+}
+
+.menu-item-inactive {
+  @apply text-text-1 group-hover:text-text-1 hover:bg-gray-100;
+}
+
+.menu-item-icon {
+  @apply h-6 w-6 transition-colors duration-100;
+}
+
+.menu-item-icon-inactive {
+  @apply text-bunker-800;
+}
+
+.menu-item-arrow {
+  @apply ml-auto h-5 w-5 transition-transform duration-200;
+}
+
+.menu-item-arrow-active {
+  @apply rotate-0;
+}
+
+.menu-item-arrow-inactive {
+  @apply -rotate-90;
+}
+
+.menu-dropdown-vertical-line {
+  @apply bg-gray-100 absolute w-0.5;
+}
+
+.menu-dropdown-item {
+  @apply text-text-1 relative flex w-full items-center gap-4 rounded-lg px-4 py-[10px] text-lg leading-7 font-normal;
+}
+
+.menu-dropdown-item-active {
+  @apply bg-orange-500 text-white;
+}
+
+.menu-dropdown-item-inactive {
+  @apply text-bunker-800 hover:bg-gray-100;
+}
+
+.menu-dropdown-item-dot {
+  @apply bg-gray-100 absolute top-5 -left-4 h-2 w-2 rounded-full border-none;
+}

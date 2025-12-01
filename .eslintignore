@@ -1,0 +1,3 @@
+out/
+src/services/*
+next.config.js

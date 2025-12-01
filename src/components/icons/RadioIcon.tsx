@@ -1,0 +1,33 @@
+import { SvgIconsCommonProps } from './SvgIcons.types';
+
+interface RadioIconProps extends SvgIconsCommonProps {
+  checked?: boolean;
+}
+
+const RadioIcon = (props: RadioIconProps) => {
+  const { checked = false, ...otherProps } = props;
+
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...otherProps}
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18ZM10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20Z"
+        fill={checked ? '#A50034' : '#B4B4B4'}
+      />
+      <path
+        d="M15 10C15 12.7614 12.7614 15 10 15C7.23858 15 5 12.7614 5 10C5 7.23858 7.23858 5 10 5C12.7614 5 15 7.23858 15 10Z"
+        fill={checked ? '#A50034' : 'transparent'}
+      />
+    </svg>
+  );
+};
+
+export default RadioIcon;

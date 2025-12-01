@@ -1,0 +1,15 @@
+{
+  "apps": [
+    {
+      "script": "node_modules/next/dist/bin/next",
+      "name": "uzfit",
+      "args": "start",
+      "instances": "1",
+      "exec_mode": "cluster",
+      "cwd": "./",
+      "env": {
+        "PORT": "3123"
+      }
+    }
+  ]
+}
