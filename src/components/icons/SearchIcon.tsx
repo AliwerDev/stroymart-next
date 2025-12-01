@@ -10,23 +10,8 @@ const SearchIcon = (props: SvgIconsCommonProps) => {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <circle
-        cx="9.21552"
-        cy="9.21601"
-        r="5.88495"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
       <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M16.6695 16.67L13.3765 13.377L16.6695 16.67Z"
-        fill="currentColor"
-      />
-      <path
-        d="M16.6695 16.67L13.3765 13.377"
+        d="M18.3333 18.3334L16.6666 16.6667M17.5 9.58341C17.5 13.9557 13.9555 17.5001 9.58329 17.5001C5.21104 17.5001 1.66663 13.9557 1.66663 9.58341C1.66663 5.21116 5.21104 1.66675 9.58329 1.66675C13.9555 1.66675 17.5 5.21116 17.5 9.58341Z"
         stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"

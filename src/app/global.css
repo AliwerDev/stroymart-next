@@ -1,397 +1,173 @@
 @import 'tailwindcss';
-@import './sidebar.css';
 @import 'tw-animate-css';
 
-@custom-variant dark (&:is(.dark *));
-
 @theme {
-  --color-background-500: #f6f8fa;
-  --color-foreground: #171717;
-  --font-sans: var(--font-inter);
+  --color-primary: #389dd1;
+  --color-orange: #f59e0b;
 
-  /* Add your custom colors that are used in sidebar.css */
-  --color-brand-500: #ff6b35;
-  --color-secondary-100: #f3f4f6;
-  --color-secondary-500: #6b7280;
+  --color-border: #e5e7eb;
 
-  --color-gray-100: #f3f4f6;
-  --color-gray-300: #e8eaef;
-  --color-gray-700: #374151;
-
-  --color-white: #ffffff;
-
-  --color-bunker-50: #f6f7f9;
-  --color-bunker-100: #e8eaef;
-  --color-bunker-200: #d7dbe0;
-  --color-bunker-300: #8b96a5;
-  --color-bunker-400: #8b96a5;
-  --color-bunker-600: #576272;
-  --color-bunker-800: #3e454e;
-  --color-bunker-900: #363b44;
-  --color-bunker-950: #191b1f;
-
-  --color-primary-50: #fff1f1;
-  --color-primary-100: #a5003460;
-  --color-primary-500: #a50034;
-
-  --color-brand-50: #fff2f0;
-  --color-brand-100: #ffe1dc;
-  --color-brand-200: #ffc1b6;
-  --color-brand-300: #ff9585;
-  --color-brand-400: #fd6b4e;
-  --color-brand-500: #fc471a;
-  --color-brand-600: #ea3006;
-  --color-brand-700: #c22404;
-  --color-brand-800: #9c1f07;
-  --color-brand-900: #7f1c09;
-  --color-brand-950: #450b02;
-
-  --color-success-50: #ebf5e9;
-  --color-success-500: #287e00;
-
-  --color-gray-50: #919eab29;
-
-  --color-warm-gray: #f0ece4;
-  --color-light-gray-1: #f5f3eb;
-  --color-light-gray-3: #e6e1d6;
-
-  --color-mid-gray-1: #cac8c2;
-  --color-mid-gray-2: #646464;
-  --color-mid-gray-3: #4a4946;
-
-  --color-text-1: #000;
-  --color-text-2: #333333;
-  --color-text-3: #646464;
-  --color-text-4: #b4b4b4;
-  --color-white: #fff;
-
-  /* Typography Scale*/
-  --font-size-4xl: 2.25rem; /* 36px */
-  --font-size-3xl: 2rem; /* 32px */
-  --font-size-2xl: 1.5rem; /* 24px */
-  --font-size-xl: 1.25rem; /* 20px */
-  --font-size-lg: 1rem; /* 16px */
-  --font-size-md: 0.875rem; /* 14px */
-  --font-size-sm: 0.75rem; /* 12px */
-
-  /* Line Heights - Based on your specifications */
-  --line-height-140: 1.4; /* 140% */
-  --line-height-130: 1.3; /* 130% */
-
-  /* Font Weights - Standard values */
-  --fond-weight-regular: 400;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
+  --color-text1: #0f172a;
+  --color-text2: #374151;
+  --color-text3: #9ca3af;
 }
 
-@layer components {
-  @layer components {
-    .typo-h-bl-36 {
-      font-size: var(--font-size-4xl); /* 36px */
-      font-weight: var(--font-weight-bold); /* 700 */
-      line-height: var(--line-height-140); /* 140% */
-
-      @media (max-width: 768px) {
-        font-size: var(--font-size-3xl);
-      }
-    }
-
-    .typo-h-sm-36 {
-      font-size: var(--font-size-4xl);
-      font-weight: var(--font-weight-semibold);
-      line-height: var(--line-height-140);
-
-      @media (max-width: 768px) {
-        font-size: var(--font-size-3xl);
-      }
-    }
-
-    .typo-h-rg-36 {
-      font-size: var(--font-size-4xl);
-      font-weight: var(--font-weight-regular);
-      line-height: var(--line-height-140);
-
-      @media (max-width: 768px) {
-        font-size: var(--font-size-3xl);
-      }
-    }
-
-    .typo-h2-bl-32 {
-      font-size: var(--font-size-3xl);
-      font-weight: var(--font-weight-bold);
-      line-height: var(--line-height-130);
-
-      @media (max-width: 768px) {
-        font-size: var(--font-size-2xl);
-      }
-    }
-    .typo-h2-sm-32 {
-      font-size: var(--font-size-3xl);
-      font-weight: var(--font-weight-semibold);
-      line-height: var(--line-height-130);
-
-      @media (max-width: 768px) {
-        font-size: var(--font-size-2xl);
-      }
-    }
-    .typo-h2-rg-32 {
-      font-size: var(--font-size-3xl);
-      font-weight: var(--font-weight-regular);
-      line-height: var(--line-height-130);
-
-      @media (max-width: 768px) {
-        font-size: var(--font-size-2xl);
-      }
-    }
-
-    .typo-h3-bl-24 {
-      font-size: var(--font-size-2xl);
-      font-weight: var(--font-weight-bold);
-      line-height: var(--line-height-130);
-
-      @media (max-width: 768px) {
-        font-size: var(--font-size-xl);
-      }
-    }
-
-    .typo-h3-sm-24 {
-      font-size: var(--font-size-2xl);
-      font-weight: var(--font-weight-semibold);
-      line-height: var(--line-height-130);
-
-      @media (max-width: 768px) {
-        font-size: var(--font-size-xl);
-      }
-    }
-
-    .typo-h3-rg-24 {
-      font-size: var(--font-size-2xl);
-      font-weight: var(--font-weight-regular);
-      line-height: var(--line-height-140);
-
-      @media (max-width: 768px) {
-        font-size: var(--font-size-lg);
-      }
-    }
-
-    .typo-body-bl-20 {
-      font-size: var(--font-size-xl);
-      font-weight: var(--font-weight-regular);
-      line-height: var(--line-height-140);
-
-      @media (max-width: 768px) {
-        font-size: var(--font-size-lg);
-      }
-    }
-    .typo-body-sm-20 {
-      font-size: var(--font-size-xl);
-      font-weight: var(--font-weight-semibold);
-      line-height: var(--line-height-140);
-
-      @media (max-width: 768px) {
-        font-size: var(--font-size-lg);
-      }
-    }
-    .typo-body-rg-20 {
-      font-size: var(--font-size-xl);
-      font-weight: var(--font-weight-regular);
-      line-height: var(--line-height-140);
-
-      @media (max-width: 768px) {
-        font-size: var(--font-size-lg);
-      }
-    }
-
-    .typo-subtitle-bl-16 {
-      font-size: var(--font-size-lg);
-      font-weight: var(--font-weight-bold);
-      line-height: var(--line-height-140);
-
-      @media (max-width: 768px) {
-        font-size: var(--font-size-md);
-      }
-    }
-    .typo-subtitle-sm-16 {
-      font-size: var(--font-size-lg);
-      font-weight: var(--font-weight-semibold);
-      line-height: var(--line-height-140);
-
-      @media (max-width: 768px) {
-        font-size: var(--font-size-md);
-      }
-    }
-    .typo-subtitle-rg-16 {
-      font-size: var(--font-size-lg);
-      font-weight: var(--font-weight-regular);
-      line-height: var(--line-height-140);
-
-      @media (max-width: 768px) {
-        font-size: var(--font-size-md);
-      }
-    }
-
-    .typo-caption-bl-14 {
-      font-size: var(--font-size-md);
-      font-weight: var(--font-weight-bold);
-      line-height: var(--line-height-140);
-
-      @media (max-width: 768px) {
-        font-size: var(--font-size-sm);
-      }
-    }
-    .typo-caption-sm-14 {
-      font-size: var(--font-size-md);
-      font-weight: var(--font-weight-semibold);
-      line-height: var(--line-height-140);
-
-      @media (max-width: 768px) {
-        font-size: var(--font-size-sm);
-      }
-    }
-    .typo-caption-rg-14 {
-      font-size: var(--font-size-md);
-      font-weight: var(--font-weight-regular);
-      line-height: var(--line-height-140);
-
-      @media (max-width: 768px) {
-        font-size: var(--font-size-sm);
-      }
-    }
-
-    .typo-footnote-bl-12 {
-      font-size: var(--font-size-sm);
-      font-weight: var(--font-weight-bold);
-      line-height: var(--line-height-140);
-
-      @media (max-width: 768px) {
-        font-size: var(--font-size-xs);
-      }
-    }
-    .typo-footnote-sm-12 {
-      font-size: var(--font-size-sm);
-      font-weight: var(--font-weight-semibold);
-      line-height: var(--line-height-140);
-
-      @media (max-width: 768px) {
-        font-size: var(--font-size-xs);
-      }
-    }
-    .typo-footnote-rg-12 {
-      font-size: var(--font-size-sm);
-      font-weight: var(--font-weight-regular);
-      line-height: var(--line-height-140);
-
-      @media (max-width: 768px) {
-        font-size: var(--font-size-xs);
-      }
-    }
+@layer base {
+  button,
+  input,
+  select,
+  textarea {
+    @apply appearance-none bg-transparent border-0 outline-none;
   }
 }
 
-body {
-  font-family: var(--font-inter), system-ui, sans-serif;
+main {
+  @apply text-text1;
 }
 
-.no-scrollbar {
-  /* Chrome, Safari and Opera */
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+:root {
+  --animate-spin: spin 1s linear infinite;
 }
 
-input.field-error,
-textarea.field-error {
-  @apply border-red-500;
+.container {
+  @apply max-w-[1768px] mx-auto p-6 lg:px-0 lg:py-12;
+}
+.animate-fade-in {
+  animation: fade-in 1s var(--animation-delay, 0s) ease forwards;
 }
 
-nextjs-portal {
-  display: none !important;
+.animate-fade-up {
+  animation: fade-up 1s var(--animation-delay, 0s) ease forwards;
 }
 
-/* React DatePicker header overrides */
-.fc-datepicker .react-datepicker__header,
-.fc-datepicker .react-datepicker__header--custom {
-  background-color: transparent !important;
-  border-bottom: 0 !important;
+.animate-marquee {
+  animation: marquee var(--duration) infinite linear;
 }
 
-.fc-datepicker .react-datepicker__day-names {
-  background-color: transparent !important;
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--duration) linear infinite;
 }
 
-/* Make DatePicker input appear non-editable */
-.fc-datepicker-wrapper input {
-  cursor: pointer !important;
-  user-select: none !important;
+.animate-shimmer {
+  animation: shimmer 8s infinite;
 }
 
-input[type='number'] {
-  -moz-appearance: textfield;
+.animate-spin {
+  animation: var(--animate-spin);
 }
 
-input[type='number']::-webkit-outer-spin-button,
-input[type='number']::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.react-phone-number-input {
-  @apply flex !h-10 w-full text-bunker-900 placeholder:text-bunker-400 rounded-md border border-bunker-50 !bg-bunker-50 px-3 py-2 text-base outline-none file:bg-transparent file:text-sm file:font-medium file:text-foreground disabled:cursor-not-allowed disabled:opacity-50 md:text-sm active:border-primary-500 focus:border-primary-500;
-}
-
-.shadow-1 {
-  box-shadow: 0px 6px 20px 0px #000000f2;
-}
-
-.custom-scrollbar {
-  &::-webkit-scrollbar {
-    width: 5px;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: #b4b4b4;
-    border-radius: 10px;
-    opacity: 0.5;
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
   }
 }
 
-/* Tiptap editor content styled with Tailwind */
-.tiptap {
-  @apply text-text-1;
-  ::selection {
-    background-color: var(--color-primary-100);
+@keyframes image-glow {
+  0% {
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.74, 0.25, 0.76, 1);
   }
 
-  pre {
-    font-family: 'JetBrainsMono', monospace;
+  10% {
+    opacity: 0.7;
+    animation-timing-function: cubic-bezier(0.12, 0.01, 0.08, 0.99);
   }
 
-  a {
-    @apply text-brand-500 underline;
-  }
-}
-
-/* Bubble menu */
-.bubble-menu {
-  @apply rounded-[50px] bg-primary-500 py-2 px-3 flex;
-  z-index: 9999999;
-  border-color: var(--color-bunker-100);
-
-  input {
-    @apply bg-transparent px-2 py-1 border-2 border-white text-white outline-none rounded-2xl;
-  }
-
-  button {
-    @apply bg-transparent rounded text-white px-2 py-1 text-sm cursor-pointer;
+  to {
+    opacity: 0.4;
   }
 }
 
-.engagement-chart-yaxis-label {
-  font-size: 12px;
-  color: #333333;
-  font-weight: 600;
-  width: 40px;
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes shimmer {
+  0%,
+  90%,
+  to {
+    background-position: calc(-100% - var(--shimmer-width)) 0;
+  }
+
+  30%,
+  60% {
+    background-position: calc(100% + var(--shimmer-width)) 0;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate(0);
+  }
+
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+@keyframes marquee-vertical {
+  0% {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+  }
+}
+
+.category-swiper {
+  overflow: visible !important;
+}
+
+.category-swiper .swiper-button-next,
+.category-swiper .swiper-button-prev {
+  display: none;
+}
+
+/* Hero Swiper Styles */
+.hero-swiper {
+  width: 100%;
+  height: 450px;
+}
+
+.hero-swiper .swiper-pagination {
+  bottom: 30px !important;
+}
+
+.hero-swiper .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.hero-swiper .swiper-pagination-bullet-active {
+  background: white;
+  width: 32px;
+  border-radius: 6px;
+}
+
+.hero-swiper .swiper-pagination-bullet-active-main {
+  background: white;
 }

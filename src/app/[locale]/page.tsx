@@ -1,7 +1,15 @@
-import { redirect } from 'next/navigation';
+import AppNavigation from '@/components/layout/AppNavigation';
+import CatalogsSection from '@/components/layout/CatalogsSection';
+import HeroSection from '@/components/layout/HeroSection';
 
-const page = () => {
-  return redirect('/dashboard/analytics');
+const Page = () => {
+  return (
+    <div>
+      <AppNavigation />
+      <HeroSection />
+      <CatalogsSection />
+    </div>
+  );
 };
 
-export default page;
+export default Page;
