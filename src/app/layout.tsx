@@ -1,3 +1,4 @@
+import AntdProvider from '@/providers/AntdProvider';
 import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './global.css';
@@ -22,7 +23,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="uz" className={inter.variable}>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <AntdProvider>{children}</AntdProvider>
+      </body>
     </html>
   );
 }

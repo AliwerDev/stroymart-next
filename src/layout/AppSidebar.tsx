@@ -1,7 +1,13 @@
 'use client';
 import { useSidebar } from '@/context/SidebarContext';
 
-import { ChevronDownIcon, StoreIcon } from '@/components/icons';
+import {
+  ChevronDownIcon,
+  FolderIcon,
+  ProductIcon,
+  ShoppingCardIcon,
+  StoreLocationIcon,
+} from '@/components/icons';
 import HorizontalDotsIcon from '@/components/icons/HorizontaLDotsIcon';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -17,38 +23,35 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   {
-    icon: <StoreIcon />,
-    name: 'Dashboard',
-    subItems: [{ name: 'Ecommerce', path: '/', pro: false }],
+    icon: <StoreLocationIcon />,
+    name: 'Домашняя страница',
+    path: '/management/',
   },
   {
-    icon: <StoreIcon />,
-    name: 'Calendar',
-    path: '/calendar',
-  },
-  {
-    icon: <StoreIcon />,
-    name: 'User Profile',
-    path: '/profile',
-  },
-
-  {
-    name: 'Forms',
-    icon: <StoreIcon />,
-    subItems: [{ name: 'Form Elements', path: '/form-elements', pro: false }],
-  },
-  {
-    name: 'Tables',
-    icon: <StoreIcon />,
-    subItems: [{ name: 'Basic Tables', path: '/basic-tables', pro: false }],
-  },
-  {
-    name: 'Pages',
-    icon: <StoreIcon />,
+    icon: <FolderIcon />,
+    name: 'Каталог',
     subItems: [
-      { name: 'Blank Page', path: '/blank', pro: false },
-      { name: '404 Error', path: '/error-404', pro: false },
+      { name: 'Категории', path: '/management/catalog/categories' },
+      { name: 'Атрибуты', path: '/management/catalog/attributes' },
+      { name: 'Группы атрибутов', path: '/management/catalog/attribute-groups' },
+      { name: 'Опции', path: '/management/catalog/options' },
     ],
+  },
+  {
+    icon: <ProductIcon />,
+    name: 'Товары',
+    subItems: [
+      { name: 'Подтверждение товара', path: '/management/products/confirmation' },
+      { name: 'Поставщики', path: '/management/products/suppliers' },
+      { name: 'Производители', path: '/management/products/manufacturers' },
+      { name: 'Фильтры', path: '/management/products/filters' },
+      { name: 'Кэшбэк', path: '/management/products/cashback' },
+    ],
+  },
+  {
+    icon: <ShoppingCardIcon />,
+    name: 'Продажи',
+    path: '/management/sales',
   },
 ];
 

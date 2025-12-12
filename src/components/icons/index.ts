@@ -42,6 +42,7 @@ export { default as ResetIcon } from './ResetIcon';
 export { default as RouteIcon } from './RouteIcon';
 export { default as SearchIcon } from './SearchIcon';
 export { default as SettingsIcon } from './SettingsIcon';
+export { default as ShoppingCardIcon } from './ShoppingCardIcon';
 export { default as SidebarOpenIcon } from './SidebarOpenIcon';
 export { default as StoreIcon } from './StoreIcon';
 export { default as StoreLocationIcon } from './StoreLocationIcon';

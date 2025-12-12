@@ -5,6 +5,7 @@ import { SidebarProvider } from '@/context/SidebarContext';
 import { useLocale } from 'next-intl';
 import { ReactNode, Suspense } from 'react';
 import { Toaster } from 'react-hot-toast';
+import AntdProvider from './AntdProvider';
 import IntlErrorHandlingProvider from './IntlErrorHandlingProvider';
 import ReduxProvider from './ReduxProvider';
 import SessionProvider from './SessionProvider';
@@ -23,7 +24,9 @@ const MainProvider = ({ children }: MainProviderProps) => {
           <TanStackProvider>
             <Suspense>
               <SidebarProvider>
-                <ConfirmModalProvider>{children}</ConfirmModalProvider>
+                <ConfirmModalProvider>
+                  <AntdProvider>{children}</AntdProvider>
+                </ConfirmModalProvider>
               </SidebarProvider>
             </Suspense>
             <Toaster
