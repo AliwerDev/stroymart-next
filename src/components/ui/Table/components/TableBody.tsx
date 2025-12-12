@@ -27,7 +27,7 @@ export const TableBody = <TData,>({
           <tr
             key={row.id}
             className={cn(
-              'hover:bg-light-gray-1 transition-colors border-b border-dashed border-mid-gray-1',
+              'hover:bg-gray-200 transition-colors border-b border-dashed border-gray-200',
               onRowClick && 'cursor-pointer',
               rowClassName
             )}
@@ -40,15 +40,15 @@ export const TableBody = <TData,>({
                   'px-[20px] py-2 md:py-4 text-sm md:text-base text-text-1',
                   cell.column.id === 'select' && 'text-left',
                   (cell.column.columnDef.meta as { align?: string })?.align === 'center' &&
-                  'text-center',
+                    'text-center',
                   (cell.column.columnDef.meta as { align?: string })?.align === 'right' &&
-                  'text-right',
+                    'text-right',
                   (cell.column.columnDef.meta as { align?: string })?.align === 'left' &&
-                  'text-left',
+                    'text-left',
                   (cell.column.columnDef.meta as { sticky?: string })?.sticky === 'left' &&
-                  'sticky left-0 z-10 bg-white shadow-[2px_0_4px_rgba(0,0,0,0.1)]',
+                    'sticky left-0 z-10 bg-white shadow-[2px_0_4px_rgba(0,0,0,0.1)]',
                   (cell.column.columnDef.meta as { sticky?: string })?.sticky === 'right' &&
-                  'sticky right-0 z-10 bg-white shadow-[-2px_0_4px_rgba(0,0,0,0.1)]'
+                    'sticky right-0 z-10 bg-white shadow-[-2px_0_4px_rgba(0,0,0,0.1)]'
                 )}
                 style={{
                   // minWidth: cell.column.getSize() !== 150 ? cell.column.getSize() : '150px',

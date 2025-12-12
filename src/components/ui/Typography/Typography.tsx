@@ -85,12 +85,12 @@ function Typography<T extends ElementType = 'p'>({
       'primary-black': 'text-primary-black',
       'primary-red': 'text-primary-red',
       'primary-warm-gray': 'text-primary-warm-gray',
-      'light-gray-1': 'text-light-gray-1',
-      'light-gray-2': 'text-light-gray-2',
-      'light-gray-3': 'text-light-gray-3',
-      'mid-gray-1': 'text-mid-gray-1',
-      'mid-gray-2': 'text-mid-gray-2',
-      'mid-gray-3': 'text-mid-gray-3',
+      'gray-200': 'text-gray-200',
+      'gray-400': 'text-gray-400',
+      'gray-600': 'text-gray-600',
+      'gray-200': 'text-gray-200',
+      'gray-400': 'text-gray-400',
+      'gray-900': 'text-gray-900',
       'text-1': 'text-text-1',
       'text-2': 'text-text-2',
       'text-3': 'text-text-3',
@@ -110,15 +110,15 @@ function Typography<T extends ElementType = 'p'>({
         getColorClass(color),
         className,
         enabled &&
-        twMerge(
-          'overflow-hidden overflow-ellipsis break-words',
-          lines === 1 && 'line-clamp-1',
-          lines === 2 && 'line-clamp-2',
-          lines === 3 && 'line-clamp-3',
-          lines === 4 && 'line-clamp-4',
-          lines === 5 && 'line-clamp-5',
-          lines === 6 && 'line-clamp-6'
-        )
+          twMerge(
+            'overflow-hidden overflow-ellipsis break-words',
+            lines === 1 && 'line-clamp-1',
+            lines === 2 && 'line-clamp-2',
+            lines === 3 && 'line-clamp-3',
+            lines === 4 && 'line-clamp-4',
+            lines === 5 && 'line-clamp-5',
+            lines === 6 && 'line-clamp-6'
+          )
       ),
       ...props,
     },

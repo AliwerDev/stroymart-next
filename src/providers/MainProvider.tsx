@@ -1,6 +1,7 @@
 'use client';
 
 import { ConfirmModalProvider } from '@/components/common/ConfirmModal/ConfirmModalProvider';
+import { SidebarProvider } from '@/context/SidebarContext';
 import { useLocale } from 'next-intl';
 import { ReactNode, Suspense } from 'react';
 import { Toaster } from 'react-hot-toast';
@@ -21,7 +22,9 @@ const MainProvider = ({ children }: MainProviderProps) => {
         <SessionProvider>
           <TanStackProvider>
             <Suspense>
-              <ConfirmModalProvider>{children}</ConfirmModalProvider>
+              <SidebarProvider>
+                <ConfirmModalProvider>{children}</ConfirmModalProvider>
+              </SidebarProvider>
             </Suspense>
             <Toaster
               position="top-center"

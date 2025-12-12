@@ -19,7 +19,7 @@ const PaperCard = ({ containerClassName, className, imgSrc, imgAlt, children }: 
         height={160}
         priority
         alt={imgAlt}
-        className="w-full h-40 object-cover bg-center rounded-xl border border-mid-gray-1"
+        className="w-full h-40 object-cover bg-center rounded-xl border border-gray-200"
       />
 
       <div className={twMerge('w-full', className)}>{children}</div>

@@ -80,13 +80,13 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     value,
     onChange: handleInputChange,
     className: cn(
-      'flex outline-none text-text-1 border border-mid-gray-1 placeholder:text-text-4 bg-white rounded-[10px] active:border-text-1 focus:border-text-1',
-      "h-11 md:h-[54px] p-2 md:p-4 text-sm md:text-base",
+      'flex outline-none text-text-1 border border-gray-200 placeholder:text-text-4 bg-white rounded-[10px] active:border-text-1 focus:border-text-1',
+      'h-11 md:h-[54px] p-2 md:p-4 text-sm md:text-base',
       error && '!text-primary-500 placeholder:text-red-400 !bg-primary-50',
       StartIcon && '!pl-10',
       EndIcon && '!pr-10',
       type === 'number' &&
-      '[&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [-moz-appearance:textfield]',
+        '[&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [-moz-appearance:textfield]',
       className,
       fullWidth && 'w-full'
     ),

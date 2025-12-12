@@ -171,7 +171,7 @@ const TgRichText = ({ value, onChange, error, className }: TgRichTextProps) => {
       <EditorContent
         spellCheck={false}
         className={cn(
-          '[&>.tiptap]:!outline-none [&>.tiptap]:text-text-1 [&>.tiptap]:border [&>.tiptap]:border-mid-gray-1 [&>.tiptap]:bg-white [&>.tiptap]:rounded-[10px] [&>.tiptap]:min-h-[200px] [&>.tiptap]:p-4',
+          '[&>.tiptap]:!outline-none [&>.tiptap]:text-text-1 [&>.tiptap]:border [&>.tiptap]:border-gray-200 [&>.tiptap]:bg-white [&>.tiptap]:rounded-[10px] [&>.tiptap]:min-h-[200px] [&>.tiptap]:p-4',
           error
             ? '[&>.tiptap]:text-primary-500 [&>.tiptap]:placeholder:text-red-400 [&>.tiptap]:!bg-primary-50 [&>.tiptap]:!border-primary-500'
             : undefined,

@@ -3,8 +3,9 @@ import { Inter } from 'next/font/google';
 import './global.css';
 
 export const metadata: Metadata = {
-  title: 'LG Admin',
-  description: 'LG - Admin panel',
+  title: 'Stroymart',
+  description:
+    'Stroymart - construction materials marketplace for builders and contractors across Uzbekistan',
 };
 
 const inter = Inter({

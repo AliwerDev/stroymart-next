@@ -34,7 +34,7 @@ const Search = ({
       value={searchValue}
       onChange={handleInputChange}
       className={className}
-      startIcon={<SearchIcon className={'text-mid-gray-1 w-6 h-6'} />}
+      startIcon={<SearchIcon className={'text-gray-200 w-6 h-6'} />}
     />
   );
 };

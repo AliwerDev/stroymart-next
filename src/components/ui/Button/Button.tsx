@@ -35,7 +35,7 @@ const Button = ({
     size === 'large' && 'h-12 px-6 py-4 text-xl leading-[30px]',
 
     variant === 'primary' && 'border-none bg-primary-500 text-white hover:bg-opacity-80',
-    variant === 'secondary' && 'bg-light-gray-3 text-text-1 hover:bg-opacity-80',
+    variant === 'secondary' && 'bg-gray-600 text-text-1 hover:bg-opacity-80',
     variant === 'outlined' &&
       'border-text-1 border text-text-1 hover:text-text-3 hover:border-text-3 hover:bg-opacity-80 bg-white',
     variant === 'ghost' && 'bg-transparent text-text-3 font-semibold',

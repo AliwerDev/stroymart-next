@@ -278,7 +278,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(function 
           {selectedArray.map((item) => (
             <span
               key={item.value}
-              className="bg-light-gray-1 w-[31%] rounded-sm p-1 runcate flex items-center justify-between gap-1 cursor-pointer"
+              className="bg-gray-200 w-[31%] rounded-sm p-1 runcate flex items-center justify-between gap-1 cursor-pointer"
             >
               <Typography variant="subtitle-rg-16" color="text-3" className="truncate">
                 {item.label}
@@ -352,7 +352,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(function 
             id={id}
             {...buttonProps}
             className={cn(
-              'flex items-center justify-start text-text-1 border w-full border-mid-gray-1 bg-white rounded-[10px]',
+              'flex items-center justify-start text-text-1 border w-full border-gray-200 bg-white rounded-[10px]',
               'h-11 md:h-[54px] px-3',
               error && '!text-primary-500 !bg-primary-50',
               hasStartIcon && 'pl-10',

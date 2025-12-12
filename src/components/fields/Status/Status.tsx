@@ -16,7 +16,7 @@ const Status = ({ onChange, value }: StatusProps) => {
   };
 
   return (
-    <div className="flex w-[300px] p-1 text-white rounded-lg border border-mid-gray-1">
+    <div className="flex w-[300px] p-1 text-white rounded-lg border border-gray-200">
       <button
         type="button"
         className={cn(

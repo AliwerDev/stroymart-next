@@ -54,7 +54,7 @@ export const TablePagination = ({ meta, onPageChange, onPerPageChange }: TablePa
             onClick={() => !isPrevDisabled && onPageChange?.(currentPage - 1)}
             className={twMerge(
               'w-6 h-6 hover:text-primary-500 cursor-pointer',
-              isPrevDisabled && 'opacity-50 text-mid-gray-1 cursor-not-allowed'
+              isPrevDisabled && 'opacity-50 text-gray-200 cursor-not-allowed'
             )}
           />
         </span>
@@ -63,7 +63,7 @@ export const TablePagination = ({ meta, onPageChange, onPerPageChange }: TablePa
             onClick={() => !isNextDisabled && onPageChange?.(currentPage + 1)}
             className={twMerge(
               'w-6 h-6 hover:text-primary-500 rotate-180 cursor-pointer',
-              isNextDisabled && 'opacity-50 text-mid-gray-1 cursor-not-allowed'
+              isNextDisabled && 'opacity-50 text-gray-200 cursor-not-allowed'
             )}
           />
         </span>

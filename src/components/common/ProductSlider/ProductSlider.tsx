@@ -103,7 +103,7 @@ const ProductSlider = ({ images, className }: ProductSliderProps) => {
       <div className="relative">
         <div
           ref={sliderRef}
-          className={'keen-slider rounded-xl overflow-hidden bg-white border border-mid-gray-1'}
+          className={'keen-slider rounded-xl overflow-hidden bg-white border border-gray-200'}
         >
           {validImages.map((img) => (
             <div
@@ -131,7 +131,7 @@ const ProductSlider = ({ images, className }: ProductSliderProps) => {
         <div
           onClick={handlePrev}
           className={cn(
-            `h-full w-8 flex items-center justify-center rounded-md bg-light-gray-1 hover:bg-light-gray-3 transition cursor-pointer`,
+            `h-full w-8 flex items-center justify-center rounded-md bg-gray-200 hover:bg-gray-600 transition cursor-pointer`,
             !canGoPrev && 'opacity-60 cursor-not-allowed'
           )}
         >
@@ -143,7 +143,7 @@ const ProductSlider = ({ images, className }: ProductSliderProps) => {
             <div key={`thumb-${img.id}`} className="keen-slider__slide h-full">
               <div
                 className={cn(
-                  'h-full w-full p-2 rounded-lg overflow-hidden border border-mid-gray-1 bg-white cursor-pointer transition-all duration-200',
+                  'h-full w-full p-2 rounded-lg overflow-hidden border border-gray-200 bg-white cursor-pointer transition-all duration-200',
                   currentImage === index && '!border-primary-500'
                 )}
               >
@@ -162,7 +162,7 @@ const ProductSlider = ({ images, className }: ProductSliderProps) => {
         <div
           onClick={handleNext}
           className={cn(
-            `h-full w-8 flex items-center justify-center rounded-md cursor-pointer bg-light-gray-1 hover:bg-light-gray-3 transition`,
+            `h-full w-8 flex items-center justify-center rounded-md cursor-pointer bg-gray-200 hover:bg-gray-600 transition`,
             !canGoNext && 'opacity-60 cursor-not-allowed'
           )}
         >

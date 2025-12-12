@@ -174,7 +174,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
 
       <div
         className={cn(
-          'relative border-2 cursor-pointer border-dashed border-mid-gray-1 bg-white rounded-lg p-3 transition-all duration-200',
+          'relative border-2 cursor-pointer border-dashed border-gray-200 bg-white rounded-lg p-3 transition-all duration-200',
           'flex flex-col items-center justify-center gap-3',
           isDragOver && !disabled && 'border-blue-400 bg-blue-50',
           disabled && 'opacity-50 cursor-not-allowed',

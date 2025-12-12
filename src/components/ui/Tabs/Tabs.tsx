@@ -37,7 +37,9 @@ const Tabs = ({
   const currentTabName = searchParams.get(queryKey) || props.currentTab || items?.[0]?.value;
 
   const activeTabIndex = useMemo(() => {
-    return index !== null ? index : items.findIndex((item) => String(item.value) === String(currentTabName));
+    return index !== null
+      ? index
+      : items.findIndex((item) => String(item.value) === String(currentTabName));
   }, [currentTabName]);
 
   const handleTabChange = (index: number) => {
@@ -83,7 +85,10 @@ const Tabs = ({
               >
                 <Typography
                   variant="caption-bl-14"
-                  className={cn('truncate text-mid-gray-2', activeTabIndex === index && 'text-primary-500')}
+                  className={cn(
+                    'truncate text-gray-400',
+                    activeTabIndex === index && 'text-primary-500'
+                  )}
                 >
                   {category.label}
                 </Typography>

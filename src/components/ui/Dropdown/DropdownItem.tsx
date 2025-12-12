@@ -1,51 +1,46 @@
-import { Link } from '@/i18n/navigation';
-import { cn } from '@/lib/utils';
-import { ReactNode } from 'react';
+import Link from 'next/link';
+import type React from 'react';
 
 interface DropdownItemProps {
-  children: ReactNode;
-  onClick?: () => void;
-  icon?: ReactNode;
+  tag?: 'a' | 'button';
   href?: string;
-  active?: boolean;
-  variant?: 'default' | 'danger';
+  onClick?: () => void;
+  onItemClick?: () => void;
+  baseClassName?: string;
+  className?: string;
+  children: React.ReactNode;
 }
 
-const DropdownItem = ({
-  children,
-  onClick,
-  icon,
+export const DropdownItem: React.FC<DropdownItemProps> = ({
+  tag = 'button',
   href,
-  active,
-  variant = 'default',
-}: DropdownItemProps) => {
-  return href ? (
-    <Link href={href}>
-      <div
-        onClick={onClick}
-        className={cn(
-          'px-4 py-2 text-sm text-text-1 hover:bg-gray-100 cursor-pointer flex items-center gap-2',
-          active && 'bg-bunker-100',
-          variant === 'danger' && 'text-red-500'
-        )}
-      >
-        {icon}
+  onClick,
+  onItemClick,
+  baseClassName = 'block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900',
+  className = '',
+  children,
+}) => {
+  const combinedClasses = `${baseClassName} ${className}`.trim();
+
+  const handleClick = (event: React.MouseEvent) => {
+    if (tag === 'button') {
+      event.preventDefault();
+    }
+    if (onClick) onClick();
+    if (onItemClick) onItemClick();
+  };
+
+  if (tag === 'a' && href) {
+    return (
+      <Link href={href} className={combinedClasses} onClick={handleClick}>
         {children}
-      </div>
-    </Link>
-  ) : (
-    <div
-      onClick={onClick}
-      className={cn(
-        'px-4 py-2 text-sm text-text-1 hover:bg-gray-100 cursor-pointer flex items-center gap-2',
-        active && 'bg-bunker-100',
-        variant === 'danger' && 'text-red-500 hover:bg-red-500/10'
-      )}
-    >
-      {icon}
+      </Link>
+    );
+  }
+
+  return (
+    <button onClick={handleClick} className={combinedClasses}>
       {children}
-    </div>
+    </button>
   );
 };
-
-export default DropdownItem;

@@ -8,7 +8,7 @@ interface TableHeaderProps<TData> {
 
 export const TableHeader = <TData,>({ headerGroups, className }: TableHeaderProps<TData>) => {
   return (
-    <thead className={cn('bg-light-gray-1 h-14', className)}>
+    <thead className={cn('bg-gray-200 h-14', className)}>
       {headerGroups.map((headerGroup) => (
         <tr key={headerGroup.id}>
           {headerGroup.headers.map((header) => (
@@ -19,15 +19,15 @@ export const TableHeader = <TData,>({ headerGroups, className }: TableHeaderProp
                 header.column.getCanSort() && 'cursor-pointer select-none hover:bg-bunker-100',
                 header.column.id === 'select' && 'w-12',
                 (header.column.columnDef.meta as { align?: string })?.align === 'center' &&
-                'text-center',
+                  'text-center',
                 (header.column.columnDef.meta as { align?: string })?.align === 'right' &&
-                'text-right',
+                  'text-right',
                 (header.column.columnDef.meta as { align?: string })?.align === 'left' &&
-                'text-left',
+                  'text-left',
                 (header.column.columnDef.meta as { sticky?: string })?.sticky === 'left' &&
-                'sticky left-0 z-10 shadow-[2px_0_4px_rgba(0,0,0,0.1)]',
+                  'sticky left-0 z-10 shadow-[2px_0_4px_rgba(0,0,0,0.1)]',
                 (header.column.columnDef.meta as { sticky?: string })?.sticky === 'right' &&
-                'sticky right-0 z-10 shadow-[-2px_0_4px_rgba(0,0,0,0.1)]'
+                  'sticky right-0 z-10 shadow-[-2px_0_4px_rgba(0,0,0,0.1)]'
               )}
               onClick={header.column.getToggleSortingHandler()}
               style={{

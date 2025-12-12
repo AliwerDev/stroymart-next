@@ -42,7 +42,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, InputProps>((props, ref) 
     disabled,
     id: props?.id || id,
     className: cn(
-      'flex w-full outline-none text-text-1 border border-mid-gray-1 bg-white p-4 rounded-[10px] active:border-text-1 focus:border-text-1 resize-none custom-scrollbar',
+      'flex w-full outline-none text-text-1 border border-gray-200 bg-white p-4 rounded-[10px] active:border-text-1 focus:border-text-1 resize-none custom-scrollbar',
       error && '!text-primary-500 placeholder:text-red-400 !bg-primary-50',
       StartIcon && 'pl-10',
       className

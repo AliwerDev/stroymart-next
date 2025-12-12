@@ -1,138 +1,47 @@
-import { cn } from '@/lib/utils';
-import {
-  autoUpdate,
-  flip,
-  FloatingPortal,
-  offset,
-  shift,
-  useClick,
-  useDismiss,
-  useFloating,
-  useInteractions,
-  useRole,
-} from '@floating-ui/react';
-import React, { ReactNode, useEffect, useState } from 'react';
-import DropdownItem from './DropdownItem';
+'use client';
+import type React from 'react';
+import { useEffect, useRef } from 'react';
 
 interface DropdownProps {
-  options?: string[];
-  onSelect?: (value: string) => void;
-  renderButton?: (props: { selected: string | null; isOpen: boolean }) => ReactNode;
-  children?: ReactNode;
-  placement?:
-    | 'top'
-    | 'top-start'
-    | 'top-end'
-    | 'bottom'
-    | 'bottom-start'
-    | 'bottom-end'
-    | 'left'
-    | 'left-start'
-    | 'left-end'
-    | 'right'
-    | 'right-start'
-    | 'right-end';
-  active?: boolean;
+  isOpen: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
   className?: string;
-  popoverClassName?: string;
-  value?: string;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({
-  options = [],
-  onSelect,
-  renderButton,
+export const Dropdown: React.FC<DropdownProps> = ({
+  isOpen,
+  onClose,
   children,
-  placement = 'bottom-start',
-  active = undefined,
-  popoverClassName,
-  className,
-  value,
+  className = '',
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState<string | null>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const { refs, floatingStyles, context } = useFloating({
-    open: isOpen,
-    onOpenChange: (open) => {
-      if (active !== undefined) {
-        setIsOpen(active);
-      } else {
-        setIsOpen(open);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node) &&
+        !(event.target as HTMLElement).closest('.dropdown-toggle')
+      ) {
+        onClose();
       }
-    },
-    placement,
-    middleware: [offset(4), flip(), shift()],
-    whileElementsMounted: autoUpdate,
-  });
+    };
 
-  const click = useClick(context);
-  const dismiss = useDismiss(context);
-  const role = useRole(context);
-  const { getReferenceProps, getFloatingProps } = useInteractions([click, dismiss, role]);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [onClose]);
 
-  const handleSelect = (option: string) => {
-    setSelected(option);
-    setIsOpen(false);
-    onSelect?.(option);
-  };
-
-  useEffect(() => {
-    if (active !== undefined) {
-      setIsOpen(active);
-    }
-  }, [active]);
-
-  useEffect(() => {
-    if (value) {
-      setSelected(value);
-    }
-  }, [value]);
+  if (!isOpen) return null;
 
   return (
-    <div className={cn('relative inline-block text-left', className)}>
-      <div ref={refs.setReference} {...getReferenceProps()} className="cursor-pointer">
-        {renderButton ? (
-          renderButton({ selected, isOpen })
-        ) : (
-          <button className="inline-flex justify-between w-40 px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm text-sm text-gray-700 hover:bg-gray-50">
-            {selected || 'Select'}
-            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M19 9l-7 7-7-7"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-        )}
-      </div>
-
-      {isOpen && (
-        <FloatingPortal>
-          <div
-            ref={refs.setFloating}
-            style={{
-              boxShadow:
-                '0px 3px 6px 0px #0000001A, 0px 10px 10px 0px #00000017, 0px 41px 16px 0px #00000003',
-              ...floatingStyles,
-            }}
-            {...getFloatingProps()}
-            className={cn('z-50 bg-white rounded-xl min-w-[10rem] py-1', popoverClassName)}
-          >
-            {children
-              ? children
-              : options.map((option, idx) => (
-                  <DropdownItem key={idx} onClick={() => handleSelect(option)}>
-                    {option}
-                  </DropdownItem>
-                ))}
-          </div>
-        </FloatingPortal>
-      )}
+    <div
+      ref={dropdownRef}
+      className={`absolute z-40  right-0 mt-2  rounded-xl border border-gray-200 bg-white  shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark ${className}`}
+    >
+      {children}
     </div>
   );
 };
-
-export default Dropdown;

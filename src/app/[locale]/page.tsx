@@ -1,11 +1,11 @@
-import AppNavigation from '@/components/layout/AppNavigation';
-import CatalogsSection from '@/components/layout/CatalogsSection';
-import HeroSection from '@/components/layout/HeroSection';
+import CatalogsSection from '@/components/landing/CatalogsSection';
+import HeroSection from '@/components/landing/HeroSection';
+import NavigationSection from '@/components/landing/NavigationSection';
 
 const Page = () => {
   return (
     <div>
-      <AppNavigation />
+      <NavigationSection />
       <HeroSection />
       <CatalogsSection />
     </div>

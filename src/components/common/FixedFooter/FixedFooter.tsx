@@ -18,7 +18,10 @@ const FixedFooter = (props: RFixedFooterProps) => {
 
   return createPortal(
     <footer
-      className={twMerge('sticky bottom-0 z-20 w-full bg-light-gray-1 px-4 md:px-6 lg:px-[30px] py-4 md:py-5 lg:py-6', className)}
+      className={twMerge(
+        'sticky bottom-0 z-20 w-full bg-gray-200 px-4 md:px-6 lg:px-[30px] py-4 md:py-5 lg:py-6',
+        className
+      )}
       {...computedProps}
     >
       {children}
