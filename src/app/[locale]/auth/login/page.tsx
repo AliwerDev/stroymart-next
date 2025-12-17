@@ -1,15 +1,14 @@
 'use client';
 
-import Input from '@/components/fields/Input';
 import EyeCloseIcon from '@/components/icons/EyeCloseIcon';
 import EyeIcon from '@/components/icons/EyeIcon';
-import Button from '@/components/ui/Button';
 import { Form, FormField, Label } from '@/components/ui/Form';
 import Typography from '@/components/ui/Typography';
 import { useCustomMutation } from '@/hooks/useMutation';
 import { Link, useRouter } from '@/i18n/navigation';
 import { LoginFormValues } from '@/types/user';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Button, Input } from 'antd';
 import { signIn } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
@@ -76,7 +75,7 @@ const LoginPage = () => {
 
       <div className="w-full space-y-5">
         <FormField name="username" label={t('Логин')}>
-          <Input fullWidth placeholder={t('Введите логин')} type="text" />
+          <Input placeholder={t('Введите логин')} type="text" />
         </FormField>
 
         <FormField
@@ -97,8 +96,7 @@ const LoginPage = () => {
           <Input
             type={passwordShow ? 'text' : 'password'}
             placeholder={t('Введите пароль')}
-            fullWidth
-            endIcon={
+            suffix={
               <div
                 className="cursor-pointer text-text-1"
                 onClick={() => setPasswordShow(!passwordShow)}
@@ -110,7 +108,7 @@ const LoginPage = () => {
         </FormField>
       </div>
 
-      <Button variant="primary" type="submit" fullWidth disabled={loading}>
+      <Button className="w-full" type="primary" disabled={loading}>
         {t('Войти')}
       </Button>
     </Form>

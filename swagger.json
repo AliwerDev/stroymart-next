@@ -1,0 +1,2181 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://138.249.7.16",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/api/v1/user/update": {
+      "put": {
+        "tags": ["user-controller"],
+        "operationId": "updateUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqUserUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/customer/update": {
+      "put": {
+        "tags": ["user-controller"],
+        "operationId": "updateCustomer",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqCustomerUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/admin/update": {
+      "put": {
+        "tags": ["user-controller"],
+        "operationId": "updateAdmin",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqAdminUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/filter/update": {
+      "put": {
+        "tags": ["filter-controller"],
+        "operationId": "update",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqFilterUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/filter-group/update": {
+      "put": {
+        "tags": ["filter-group-controller"],
+        "operationId": "update_1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqFilterGroupUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/category/update": {
+      "put": {
+        "tags": ["category-controller"],
+        "operationId": "update_2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqCategoryUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/authorization/role/update": {
+      "put": {
+        "tags": ["authorization-controller"],
+        "operationId": "updateRole",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqUserRoleUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/attribute/update": {
+      "put": {
+        "tags": ["attribute-controller"],
+        "operationId": "update_3",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqAttributeUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/attribute-group/update": {
+      "put": {
+        "tags": ["attribute-group-controller"],
+        "operationId": "update_4",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqAttributeGroupUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/filter/create": {
+      "post": {
+        "tags": ["filter-controller"],
+        "operationId": "create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqFilterCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/filter-group/create": {
+      "post": {
+        "tags": ["filter-group-controller"],
+        "operationId": "create_1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqFilterGroupCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/category/create": {
+      "post": {
+        "tags": ["category-controller"],
+        "operationId": "create_2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqCategoryCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/authorization/role/create": {
+      "post": {
+        "tags": ["authorization-controller"],
+        "operationId": "createRole",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqUserRoleCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/token/refresh": {
+      "post": {
+        "tags": ["sign-controller"],
+        "operationId": "tokenRefresh",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqTokenRefresh"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResSignIn"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/init/customer": {
+      "post": {
+        "tags": ["sign-controller"],
+        "operationId": "initCustomer",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqSignInForCustomer"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/confirm/customer": {
+      "post": {
+        "tags": ["sign-controller"],
+        "operationId": "confirmCustomer",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqSignInForCustomer"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResSignIn"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/admin/sign": {
+      "post": {
+        "tags": ["sign-controller"],
+        "operationId": "signInForAdmin",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqSignInForAdmin"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResSignIn"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/attribute/create": {
+      "post": {
+        "tags": ["attribute-controller"],
+        "operationId": "create_3",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqAttributeCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/attribute-group/create": {
+      "post": {
+        "tags": ["attribute-group-controller"],
+        "operationId": "create_4",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqAttributeGroupCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/get/{uuid}": {
+      "get": {
+        "tags": ["user-controller"],
+        "operationId": "getUserByUuid",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResUserOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/get/list": {
+      "get": {
+        "tags": ["user-controller"],
+        "operationId": "getAllUsers",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomPageResUserOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/customer/get/{uuid}": {
+      "get": {
+        "tags": ["user-controller"],
+        "operationId": "getCustomerByUuid",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResCustomerOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/customer/get/list": {
+      "get": {
+        "tags": ["user-controller"],
+        "operationId": "getAllCustomers",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomPageResCustomerOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/admin/get/{uuid}": {
+      "get": {
+        "tags": ["user-controller"],
+        "operationId": "getAdminByUuid",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResAdminOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/admin/get/list": {
+      "get": {
+        "tags": ["user-controller"],
+        "operationId": "getAllAdmins",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomPageResAdminOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/filter/get/{uuid}": {
+      "get": {
+        "tags": ["filter-controller"],
+        "operationId": "getByUuid",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResFilterOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/filter/get/list": {
+      "get": {
+        "tags": ["filter-controller"],
+        "operationId": "getAllByFilterGroupUuid",
+        "parameters": [
+          {
+            "name": "filterGroupUuid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ResFilterOne"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/filter-group/get/{uuid}": {
+      "get": {
+        "tags": ["filter-group-controller"],
+        "operationId": "getByUuid_1",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResFilterGroupOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/filter-group/get/search": {
+      "get": {
+        "tags": ["filter-group-controller"],
+        "operationId": "search",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomPageResFilterGroupOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/filter-group/get/list": {
+      "get": {
+        "tags": ["filter-group-controller"],
+        "operationId": "getAll",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomPageResFilterGroupOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/category/get/{uuid}": {
+      "get": {
+        "tags": ["category-controller"],
+        "operationId": "getByUuid_2",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResCategoryOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/category/get/tree": {
+      "get": {
+        "tags": ["category-controller"],
+        "operationId": "getTree",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CategoryTreeResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/category/get/list": {
+      "get": {
+        "tags": ["category-controller"],
+        "operationId": "getAll_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ResCategoryOne"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/authorization/role/get/{uuid}": {
+      "get": {
+        "tags": ["authorization-controller"],
+        "operationId": "getRoleById",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResUserRoleOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/authorization/role/get/list": {
+      "get": {
+        "tags": ["authorization-controller"],
+        "operationId": "getAllRoles",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ResUserRoleOne"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/authorization/permission/get/list": {
+      "get": {
+        "tags": ["authorization-controller"],
+        "operationId": "getAllPermissions",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ResUserPermissionOne"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/attribute/get/{uuid}": {
+      "get": {
+        "tags": ["attribute-controller"],
+        "operationId": "getByUuid_3",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResAttributeOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/attribute/get/list": {
+      "get": {
+        "tags": ["attribute-controller"],
+        "operationId": "getAll_2",
+        "parameters": [
+          {
+            "name": "attributeGroupUuid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ResAttributeOne"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/attribute-group/get/{uuid}": {
+      "get": {
+        "tags": ["attribute-group-controller"],
+        "operationId": "getByUuid_4",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResAttributeGroupOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/attribute-group/get/list": {
+      "get": {
+        "tags": ["attribute-group-controller"],
+        "operationId": "getAll_3",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomPageResAttributeGroupOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/filter/delete/{uuid}": {
+      "delete": {
+        "tags": ["filter-controller"],
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/filter-group/delete/{uuid}": {
+      "delete": {
+        "tags": ["filter-group-controller"],
+        "operationId": "delete_1",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/category/delete/{uuid}": {
+      "delete": {
+        "tags": ["category-controller"],
+        "operationId": "delete_2",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/authorization/role/delete/{uuid}": {
+      "delete": {
+        "tags": ["authorization-controller"],
+        "operationId": "deleteRole",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/attribute/delete/{uuid}": {
+      "delete": {
+        "tags": ["attribute-controller"],
+        "operationId": "delete_3",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/attribute-group/delete/{uuid}": {
+      "delete": {
+        "tags": ["attribute-group-controller"],
+        "operationId": "delete_4",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ReqUserUpdate": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "password": {
+            "type": "string"
+          },
+          "roleUuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "lang": {
+            "type": "string",
+            "enum": ["UZB", "RUS", "ENG"]
+          },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "BLOCKED"]
+          }
+        }
+      },
+      "ResStringMessage": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "ReqCustomerUpdate": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "middleName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "gender": {
+            "type": "string"
+          },
+          "userUuid": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "ReqAdminUpdate": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "LocalizedText": {
+        "type": "object",
+        "properties": {
+          "ru": {
+            "type": "string"
+          },
+          "uzl": {
+            "type": "string"
+          },
+          "uzc": {
+            "type": "string"
+          }
+        }
+      },
+      "ReqFilterUpdate": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "iconUrl": {
+            "type": "string"
+          },
+          "orderNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "filterGroupUuid": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "ReqFilterGroupUpdate": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "orderNumber": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ReqCategoryUpdate": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "description": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "contentDescription": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "iconUrl": {
+            "type": "string"
+          },
+          "bannerUrl": {
+            "type": "string"
+          },
+          "percent": {
+            "type": "number",
+            "format": "double"
+          },
+          "ceoContent": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "INACTIVE"]
+          },
+          "orderNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "parentCategoryUuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "filterUuids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        }
+      },
+      "ReqUserRoleUpdate": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "permissionIdList": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      },
+      "ReqAttributeUpdate": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "key": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "value": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "isMain": {
+            "type": "boolean"
+          },
+          "orderNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "attributeGroupUuid": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "ReqAttributeGroupUpdate": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "orderNumber": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ReqFilterCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "iconUrl": {
+            "type": "string"
+          },
+          "orderNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "filterGroupUuid": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "ReqFilterGroupCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "orderNumber": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ReqCategoryCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "description": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "contentDescription": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "iconUrl": {
+            "type": "string"
+          },
+          "bannerUrl": {
+            "type": "string"
+          },
+          "percent": {
+            "type": "number",
+            "format": "double"
+          },
+          "ceoContent": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "INACTIVE"]
+          },
+          "orderNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "parentCategoryUuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "filterUuids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        }
+      },
+      "ReqUserRoleCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "permissionIdList": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      },
+      "ReqTokenRefresh": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "ResSignIn": {
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string"
+          },
+          "accessTokenExpire": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "refreshToken": {
+            "type": "string"
+          },
+          "refreshTokenExpire": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResUserPermissionOne"
+            }
+          }
+        }
+      },
+      "ResUserPermissionOne": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          }
+        }
+      },
+      "ReqSignInForCustomer": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
+      "ReqSignInForAdmin": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "ReqAttributeCreate": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "value": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "isMain": {
+            "type": "boolean"
+          },
+          "orderNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "attributeGroupUuid": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "ReqAttributeGroupCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "orderNumber": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResUserOne": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "username": {
+            "type": "string"
+          },
+          "roleUuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "roleName": {
+            "type": "string"
+          },
+          "lang": {
+            "type": "string",
+            "enum": ["UZB", "RUS", "ENG"]
+          },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "BLOCKED"]
+          }
+        }
+      },
+      "CustomPageResUserOne": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResUserOne"
+            }
+          },
+          "paginationData": {
+            "$ref": "#/components/schemas/PaginationData"
+          }
+        }
+      },
+      "PaginationData": {
+        "type": "object",
+        "properties": {
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currentPageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResCustomerOne": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "middleName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "gender": {
+            "type": "string"
+          },
+          "userUuid": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "CustomPageResCustomerOne": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResCustomerOne"
+            }
+          },
+          "paginationData": {
+            "$ref": "#/components/schemas/PaginationData"
+          }
+        }
+      },
+      "ResAdminOne": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "userUuid": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "CustomPageResAdminOne": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResAdminOne"
+            }
+          },
+          "paginationData": {
+            "$ref": "#/components/schemas/PaginationData"
+          }
+        }
+      },
+      "ResFilterOne": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "iconUrl": {
+            "type": "string"
+          },
+          "orderNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "filterGroupUuid": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "ResFilterGroupOne": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "orderNumber": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "CustomPageResFilterGroupOne": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResFilterGroupOne"
+            }
+          },
+          "paginationData": {
+            "$ref": "#/components/schemas/PaginationData"
+          }
+        }
+      },
+      "ResCategoryOne": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "description": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "contentDescription": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "iconUrl": {
+            "type": "string"
+          },
+          "bannerUrl": {
+            "type": "string"
+          },
+          "percent": {
+            "type": "number",
+            "format": "double"
+          },
+          "ceoContent": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "INACTIVE"]
+          },
+          "orderNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "parentCategoryUuid": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "CategoryTreeResponse": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "description": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "contentDescription": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "iconUrl": {
+            "type": "string"
+          },
+          "bannerUrl": {
+            "type": "string"
+          },
+          "percent": {
+            "type": "number",
+            "format": "double"
+          },
+          "ceoContent": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "INACTIVE"]
+          },
+          "orderNumber": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResUserRoleOne": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "roleName": {
+            "type": "string"
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResUserPermissionOne"
+            }
+          }
+        }
+      },
+      "ResAttributeOne": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "key": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "value": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "isMain": {
+            "type": "boolean"
+          },
+          "orderNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "attributeGroupUuid": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "ResAttributeGroupOne": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "orderNumber": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "CustomPageResAttributeGroupOne": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResAttributeGroupOne"
+            }
+          },
+          "paginationData": {
+            "$ref": "#/components/schemas/PaginationData"
+          }
+        }
+      }
+    }
+  }
+}
