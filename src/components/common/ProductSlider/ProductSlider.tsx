@@ -144,7 +144,7 @@ const ProductSlider = ({ images, className }: ProductSliderProps) => {
               <div
                 className={cn(
                   'h-full w-full p-2 rounded-lg overflow-hidden border border-gray-200 bg-white cursor-pointer transition-all duration-200',
-                  currentImage === index && '!border-primary-500'
+                  currentImage === index && 'border-primary-500!'
                 )}
               >
                 <Image

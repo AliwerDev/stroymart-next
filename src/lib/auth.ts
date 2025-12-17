@@ -17,19 +17,21 @@ export const authOptions = {
             return null;
           }
 
-          // Confirm phone with code
-          const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/login`, {
+          const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/admin/sign`, {
             username: credentials.username,
             password: credentials.password,
           });
 
+          console.log(response);
+
           if (response.status === 200) {
             return {
-              id: get(response, 'data.result.id', ''),
+              id: credentials?.username,
               username: credentials?.username,
-              accessToken: get(response, 'data.result.access_token', ''),
-              email: get(response, 'data.result.email', ''),
-              fullname: get(response, 'data.result.fullname', ''),
+              email: '',
+              fullname: credentials?.username,
+              accessToken: get(response, 'data.accessToken', ''),
+              refreshToken: get(response, 'data.refreshToken', ''),
             };
           }
 
@@ -45,7 +47,9 @@ export const authOptions = {
     async jwt({ token, user }: any) {
       if (user) {
         token.accessToken = user.accessToken;
+        token.refreshToken = user.refreshToken;
         token.id = user.id;
+        token.username = user.username;
         token.email = user.email;
         token.fullname = user.fullname;
       }
@@ -53,7 +57,9 @@ export const authOptions = {
     },
     async session({ session, token }: any) {
       session.accessToken = token.accessToken as string;
+      session.refreshToken = token.refreshToken as string;
       session.id = token.id as string;
+      session.username = token.username as string;
       session.email = token.email as string;
       session.fullname = token.fullname as string;
       return session;
@@ -63,6 +69,6 @@ export const authOptions = {
     strategy: 'jwt',
   },
   pages: {
-    signIn: '/auth/login',
+    signIn: '/auth/login-management',
   },
 };

@@ -1,53 +1,53 @@
 'use client';
 import { PencilIcon, PlusIcon, TrashIcon } from '@/components/icons';
 import PageHeader from '@/components/landing/PageHeader';
-import { categoryApi } from '@/data/category/category.api';
-import { CategoryStatusEnum, ResCategoryOne } from '@/data/category/category.types';
+import { filterGroupApi } from '@/data/filter-group/filter-group.api';
+import { ResFilterGroupOne } from '@/data/filter-group/filter-group.types';
 import useGetTranslatedWord from '@/hooks/useGetTranslatedWord';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Button, Modal, Table, Tag, message } from 'antd';
+import { Button, Modal, Table, message } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
-import AddEditCategoryModal from './_components/AddEditCategoryModal';
+import AddEditFilterGroupModal from './_components/AddEditFilterGroupModal';
 
-export default function CategoriesPage() {
+export default function FilterGroupsPage() {
   const t = useTranslations();
   const getWord = useGetTranslatedWord();
   const queryClient = useQueryClient();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedCategoryUuid, setSelectedCategoryUuid] = useState<string | undefined>();
+  const [selectedFilterGroupUuid, setSelectedFilterGroupUuid] = useState<string | undefined>();
 
-  const { data: categories, isLoading } = useQuery({
-    queryKey: ['categories'],
-    queryFn: categoryApi.getAll,
+  const { data: filterGroups, isLoading } = useQuery({
+    queryKey: ['filter-groups'],
+    queryFn: filterGroupApi.getAll,
   });
 
   const deleteMutation = useMutation({
-    mutationFn: (uuid: string) => categoryApi.delete(uuid),
+    mutationFn: (uuid: string) => filterGroupApi.delete(uuid),
     onSuccess: () => {
-      message.success(t('Category deleted successfully'));
-      queryClient.invalidateQueries({ queryKey: ['categories'] });
+      message.success(t('Filter group deleted successfully'));
+      queryClient.invalidateQueries({ queryKey: ['filter-groups'] });
     },
     onError: () => {
-      message.error(t('Failed to delete category'));
+      message.error(t('Failed to delete filter group'));
     },
   });
 
-  const handleOpenModal = (categoryUuid?: string) => {
-    setSelectedCategoryUuid(categoryUuid);
+  const handleOpenModal = (filterGroupUuid?: string) => {
+    setSelectedFilterGroupUuid(filterGroupUuid);
     setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    setSelectedCategoryUuid(undefined);
+    setSelectedFilterGroupUuid(undefined);
   };
 
   const handleDelete = (uuid: string, name: string) => {
     Modal.confirm({
-      title: t('Delete Category'),
-      content: t('Are you sure you want to delete this category?', { name }),
+      title: t('Delete Filter Group'),
+      content: t('Are you sure you want to delete this filter group?', { name }),
       okText: t('Delete'),
       okType: 'danger',
       cancelText: t('Cancel'),
@@ -58,7 +58,7 @@ export default function CategoriesPage() {
     });
   };
 
-  const columns: ColumnsType<ResCategoryOne> = [
+  const columns: ColumnsType<ResFilterGroupOne> = [
     {
       title: '#',
       dataIndex: 'index',
@@ -71,22 +71,7 @@ export default function CategoriesPage() {
       title: t('Name'),
       dataIndex: 'name',
       key: 'name',
-      render: (_: ResCategoryOne['name'], record: ResCategoryOne) => getWord(record, 'name'),
-    },
-    {
-      title: t('Status'),
-      dataIndex: 'status',
-      key: 'status',
-      width: 120,
-      align: 'center',
-      render: (status: CategoryStatusEnum) => (
-        <Tag color={status === CategoryStatusEnum.ACTIVE ? 'green' : 'red'}>{status}</Tag>
-      ),
-      filters: [
-        { text: 'ACTIVE', value: CategoryStatusEnum.ACTIVE },
-        { text: 'INACTIVE', value: CategoryStatusEnum.INACTIVE },
-      ],
-      onFilter: (value, record) => record.status === value,
+      render: (_: ResFilterGroupOne['name'], record: ResFilterGroupOne) => getWord(record, 'name'),
     },
     {
       title: t('Order'),
@@ -94,14 +79,6 @@ export default function CategoriesPage() {
       key: 'orderNumber',
       width: 100,
       align: 'center',
-    },
-    {
-      title: t('Percent'),
-      dataIndex: 'percent',
-      key: 'percent',
-      width: 100,
-      align: 'center',
-      render: (percent: number) => `${percent}%`,
     },
     {
       title: t('Actions'),
@@ -131,7 +108,10 @@ export default function CategoriesPage() {
   return (
     <div>
       <PageHeader
-        breadcrumbs={[{ label: 'Каталог', href: '/management/catalog' }, { label: 'Категории' }]}
+        breadcrumbs={[
+          { label: t('Catalog'), href: '/management/catalog' },
+          { label: t('Filter Groups') },
+        ]}
         actions={
           <Button
             type="primary"
@@ -145,7 +125,7 @@ export default function CategoriesPage() {
       <div className="mt-4">
         <Table
           columns={columns}
-          dataSource={categories}
+          dataSource={filterGroups?.data}
           rowKey="uuid"
           loading={isLoading}
           pagination={{
@@ -158,10 +138,10 @@ export default function CategoriesPage() {
         />
       </div>
 
-      <AddEditCategoryModal
+      <AddEditFilterGroupModal
         open={isModalOpen}
         onClose={handleCloseModal}
-        categoryUuid={selectedCategoryUuid}
+        filterGroupUuid={selectedFilterGroupUuid}
       />
     </div>
   );

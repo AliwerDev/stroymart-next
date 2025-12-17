@@ -1,8 +1,8 @@
 import InfoIcon from '@/components/icons/InfoIcon';
 import TrashIcon from '@/components/icons/TrashIcon';
-import Button from '@/components/ui/Button';
 import { Modal } from '@/components/ui/Modal';
 import Typography from '@/components/ui/Typography';
+import { Button } from 'antd';
 import { useTranslations } from 'next-intl';
 import React from 'react';
 
@@ -120,10 +120,10 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
         </div>
 
         <div className="flex gap-3 pt-6">
-          <Button variant="secondary" onClick={handleCancel} fullWidth disabled={loading}>
+          <Button type="dashed" onClick={handleCancel} className="w-full" disabled={loading}>
             {cancelText || defaultTexts.cancelText}
           </Button>
-          <Button variant={'primary'} onClick={handleConfirm} fullWidth disabled={loading}>
+          <Button type="primary" onClick={handleConfirm} className="w-full" disabled={loading}>
             {confirmText || defaultTexts.confirmText}
           </Button>
         </div>

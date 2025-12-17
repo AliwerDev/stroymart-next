@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useCallback } from 'react';
+import dayjs from 'dayjs';
+import { useCallback, useMemo } from 'react';
 import { useUrlParams } from './useUrlParams';
 
 interface UsePageFiltersProps {
@@ -25,14 +26,31 @@ const usePageFilters = ({
     value === 'null' ||
     value === 'undefined';
 
+  const filters = useMemo(() => {
+    const merged = { ...initialFilters, ...params };
+
+    Object.keys(merged).forEach((key) => {
+      const value = merged[key];
+
+      if (typeof value === 'string' && value.match(/^\d{4}-\d{2}-\d{2}$/)) {
+        merged[key] = dayjs(value);
+      }
+    });
+
+    return merged;
+  }, [initialFilters, params]);
+
   const handleFilterChange = useCallback(
     (key: string, value: any) => {
       const updates: Record<string, any> = {};
 
-      // If value is null/undefined, clear the filter by setting it to undefined
-      updates[key] = isNil(value) ? undefined : value;
+      let processedValue = value;
+      if (dayjs.isDayjs(value)) {
+        processedValue = value.format('YYYY-MM-DD');
+      }
 
-      // Reset to first page when filter changes
+      updates[key] = isNil(processedValue) ? undefined : processedValue;
+
       if (key !== 'currentPage' && key !== 'perPage') {
         updates.currentPage = '1';
       }
@@ -46,19 +64,21 @@ const usePageFilters = ({
     (updates: Record<string, any>) => {
       const cleanUpdates: Record<string, any> = {};
 
-      // Clear null/undefined values by setting them to undefined
       Object.entries(updates).forEach(([key, value]) => {
-        cleanUpdates[key] = isNil(value) ? undefined : value;
+        let processedValue = value;
+        if (dayjs.isDayjs(value)) {
+          processedValue = value.format('YYYY-MM-DD');
+        }
+
+        cleanUpdates[key] = isNil(processedValue) ? undefined : processedValue;
       });
 
-      // Check if any non-page/limit filters are being changed
       const hasNonPageLimitChanges = Object.keys(cleanUpdates).some(
         (key) => key !== 'currentPage' && key !== 'perPage'
       );
 
-      // Reset to first page if non-page/limit filters are changing
       if (hasNonPageLimitChanges) {
-        cleanUpdates.currentPage = '0';
+        cleanUpdates.currentPage = '1';
       }
 
       setParams(cleanUpdates);
@@ -67,7 +87,7 @@ const usePageFilters = ({
   );
 
   return {
-    filters: { ...initialFilters, ...params },
+    filters,
     handleFilterChange,
     handleSetFilters,
     resetFilters: resetParams,

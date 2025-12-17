@@ -1,13 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import DatePicker from '@/components/fields/DatePicker';
-import Input from '@/components/fields/Input';
-import { Select, SelectOption } from '@/components/fields/Select';
 import usePageFilters from '@/hooks/usePageFilters';
+import { DatePicker, Input, Select } from 'antd';
 import Search from '../Search';
 
 export interface FilterOption {
-  id: string | number;
-  name: string;
+  label: string;
+  value: string | number;
 }
 
 export interface FilterConfig {
@@ -16,10 +14,9 @@ export interface FilterConfig {
   childKeys?: string[];
   placeholder: string;
   disabled?: boolean;
-  options?: SelectOption[];
+  options?: FilterOption[];
   hideLabel?: boolean;
   label?: string;
-  inputType?: 'text' | 'number' | 'date' | 'time' | 'password' | 'phone' | 'pinfl';
   icon?: React.ReactNode;
 }
 
@@ -68,16 +65,15 @@ const PageFilter = ({
     switch (filter.type) {
       case 'select':
         return (
-          <div className="w-full">
-            <Select
-              value={values[filter.key]}
-              onChange={(value) => handleSelectChange(filter, value)}
-              placeholder={filter.placeholder}
-              options={filter.options || []}
-              disabled={filter.disabled}
-              startIcon={filter.icon}
-            />
-          </div>
+          <Select
+            value={values[filter.key]}
+            onChange={(value) => handleSelectChange(filter, value)}
+            placeholder={filter.placeholder}
+            options={filter.options || []}
+            disabled={filter.disabled}
+            className="w-full"
+            allowClear
+          />
         );
       case 'date':
         return (
@@ -86,6 +82,8 @@ const PageFilter = ({
             value={values[filter.key] || undefined}
             onChange={(value) => onFilterChange(filter.key, value)}
             placeholder={filter.placeholder}
+            className="w-full"
+            format="YYYY-MM-DD"
           />
         );
       case 'search':
@@ -102,11 +100,11 @@ const PageFilter = ({
         return (
           <Input
             value={values[filter.key] || ''}
-            onChange={(value) => onFilterChange(filter.key, value)}
+            onChange={(e) => onFilterChange(filter.key, e.target.value)}
             placeholder={filter.placeholder}
             className="w-full"
-            type={filter.inputType}
-            startIcon={filter.icon}
+            type="text"
+            prefix={filter.icon}
           />
         );
       default:

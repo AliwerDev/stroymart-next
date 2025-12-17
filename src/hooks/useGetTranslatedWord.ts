@@ -1,26 +1,24 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import get from 'lodash.get';
 import { useLocale } from 'next-intl';
 
 const useGetTranslatedWord = () => {
   const locale = useLocale();
 
-  const getWord = (record: Record<string, string>, key: string) => {
+  const getWord = (record: any, key: string) => {
     switch (locale) {
       case 'uz':
-        return record?.[`${key}_uz`];
+        return get(record, [key, 'uzl']);
       case 'ru':
-        return record?.[`${key}_ru`];
+        return get(record, [key, 'ru']);
       case 'uzk':
-        return record?.[`${key}_uzk`];
-      case 'en':
-        return record?.[`${key}_en`];
+        return get(record, [key, 'uzc']);
       default:
-        return record?.[`${key}_uz`];
+        return get(record, [key, 'uzl']);
     }
   };
 
-  return {
-    getWord,
-  };
+  return getWord;
 };
 
 export default useGetTranslatedWord;

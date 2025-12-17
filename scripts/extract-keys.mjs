@@ -70,12 +70,27 @@ async function extract() {
   for (const [lang, translation] of Object.entries(translations)) {
     const updatedTranslation = {};
 
+    // Separate keys into filled and empty
+    const filledKeys = [];
+    const emptyKeys = [];
+
     for (const key of allKeys) {
-      if (translation[key] !== undefined) {
-        updatedTranslation[key] = translation[key];
+      const value = translation[key] !== undefined ? translation[key] : '';
+      if (value === '') {
+        emptyKeys.push(key);
       } else {
-        updatedTranslation[key] = '';
+        filledKeys.push(key);
       }
+    }
+
+    // Add filled keys first
+    for (const key of filledKeys) {
+      updatedTranslation[key] = translation[key];
+    }
+
+    // Add empty keys at the bottom
+    for (const key of emptyKeys) {
+      updatedTranslation[key] = '';
     }
 
     fs.writeFileSync(`messages/${lang}.json`, JSON.stringify(updatedTranslation, null, 2), 'utf8');

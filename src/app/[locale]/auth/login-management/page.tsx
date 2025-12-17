@@ -49,7 +49,7 @@ const LoginPage = () => {
     },
     onSuccess: async () => {
       toast.success(t('Вход выполнен успешно!'));
-      router.push('/dashboard');
+      router.push('/management');
       setLoading(false);
     },
     onError: () => {
@@ -108,7 +108,7 @@ const LoginPage = () => {
         </FormField>
       </div>
 
-      <Button className="w-full" type="primary" disabled={loading}>
+      <Button htmlType="submit" className="w-full" type="primary" disabled={loading}>
         {t('Войти')}
       </Button>
     </Form>

@@ -10,7 +10,7 @@ const StoreLocationIcon = (props: SvgIconsCommonProps) => {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <g clip-path="url(#clip0_14085_15634)">
+      <g clipPath="url(#clip0_14085_15634)">
         <path
           d="M2.5 8.33398V17.5007H10.8333"
           stroke="currentColor"

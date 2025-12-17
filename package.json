@@ -10,8 +10,7 @@
     "format": "prettier --write .",
     "prepare": "husky",
     "deploy:prod": "bash ./deploy.sh prod",
-    "keys": "node scripts/extract-translations.mjs",
-    "generate:icons": "node scripts/generate-icons-index.js"
+    "keys": "node scripts/extract-keys.mjs"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^2.0.1",

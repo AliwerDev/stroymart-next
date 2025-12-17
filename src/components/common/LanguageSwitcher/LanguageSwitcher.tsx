@@ -36,11 +36,6 @@ const LanguageSwitcher = () => {
       name: 'Русский',
       flag: '/images/flags/ru.png',
     },
-    {
-      code: 'en',
-      name: 'English',
-      flag: '/images/flags/en.png',
-    },
   ];
 
   const handleLanguageChange = async (locale: string) => {

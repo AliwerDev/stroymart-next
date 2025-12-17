@@ -1,63 +1,19 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 import { useSidebar } from '@/context/SidebarContext';
 
-import {
-  ChevronDownIcon,
-  FolderIcon,
-  ProductIcon,
-  ShoppingCardIcon,
-  StoreLocationIcon,
-} from '@/components/icons';
+import { ChevronDownIcon } from '@/components/icons';
 import HorizontalDotsIcon from '@/components/icons/HorizontaLDotsIcon';
+import useSidebarMenu, { NavItem } from '@/hooks/useSidebarMenu';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-type NavItem = {
-  name: string;
-  icon: React.ReactNode;
-  path?: string;
-  subItems?: { name: string; path: string; pro?: boolean; new?: boolean }[];
-};
-
-const navItems: NavItem[] = [
-  {
-    icon: <StoreLocationIcon />,
-    name: 'Домашняя страница',
-    path: '/management/',
-  },
-  {
-    icon: <FolderIcon />,
-    name: 'Каталог',
-    subItems: [
-      { name: 'Категории', path: '/management/catalog/categories' },
-      { name: 'Атрибуты', path: '/management/catalog/attributes' },
-      { name: 'Группы атрибутов', path: '/management/catalog/attribute-groups' },
-      { name: 'Опции', path: '/management/catalog/options' },
-    ],
-  },
-  {
-    icon: <ProductIcon />,
-    name: 'Товары',
-    subItems: [
-      { name: 'Подтверждение товара', path: '/management/products/confirmation' },
-      { name: 'Поставщики', path: '/management/products/suppliers' },
-      { name: 'Производители', path: '/management/products/manufacturers' },
-      { name: 'Фильтры', path: '/management/products/filters' },
-      { name: 'Кэшбэк', path: '/management/products/cashback' },
-    ],
-  },
-  {
-    icon: <ShoppingCardIcon />,
-    name: 'Продажи',
-    path: '/management/sales',
-  },
-];
-
 const AppSidebar: React.FC = () => {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
   const pathname = usePathname();
+  const navItems = useSidebarMenu();
 
   const renderMenuItems = (navItems: NavItem[]) => (
     <ul className="flex flex-col gap-3">
