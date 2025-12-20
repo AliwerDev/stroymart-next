@@ -6,95 +6,11 @@
   },
   "servers": [
     {
-      "url": "http://138.249.7.16",
+      "url": "http://stroy.joynoma.uz",
       "description": "Generated server url"
     }
   ],
   "paths": {
-    "/api/v1/user/update": {
-      "put": {
-        "tags": ["user-controller"],
-        "operationId": "updateUser",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ReqUserUpdate"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResStringMessage"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/user/customer/update": {
-      "put": {
-        "tags": ["user-controller"],
-        "operationId": "updateCustomer",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ReqCustomerUpdate"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResStringMessage"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/user/admin/update": {
-      "put": {
-        "tags": ["user-controller"],
-        "operationId": "updateAdmin",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ReqAdminUpdate"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResStringMessage"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/v1/filter/update": {
       "put": {
         "tags": ["filter-controller"],
@@ -132,6 +48,34 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/ReqFilterGroupUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/customer/update": {
+      "put": {
+        "tags": ["customer-controller"],
+        "operationId": "updateCustomer",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqCustomerUpdate"
               }
             }
           },
@@ -244,6 +188,34 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/ReqAttributeGroupUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/update": {
+      "put": {
+        "tags": ["admin-controller"],
+        "operationId": "updateAdmin",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqAdminUpdate"
               }
             }
           },
@@ -543,213 +515,6 @@
         }
       }
     },
-    "/api/v1/user/get/{uuid}": {
-      "get": {
-        "tags": ["user-controller"],
-        "operationId": "getUserByUuid",
-        "parameters": [
-          {
-            "name": "uuid",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResUserOne"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/user/get/list": {
-      "get": {
-        "tags": ["user-controller"],
-        "operationId": "getAllUsers",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 0
-            }
-          },
-          {
-            "name": "size",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 10
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/CustomPageResUserOne"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/user/customer/get/{uuid}": {
-      "get": {
-        "tags": ["user-controller"],
-        "operationId": "getCustomerByUuid",
-        "parameters": [
-          {
-            "name": "uuid",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResCustomerOne"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/user/customer/get/list": {
-      "get": {
-        "tags": ["user-controller"],
-        "operationId": "getAllCustomers",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 0
-            }
-          },
-          {
-            "name": "size",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 10
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/CustomPageResCustomerOne"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/user/admin/get/{uuid}": {
-      "get": {
-        "tags": ["user-controller"],
-        "operationId": "getAdminByUuid",
-        "parameters": [
-          {
-            "name": "uuid",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResAdminOne"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/user/admin/get/list": {
-      "get": {
-        "tags": ["user-controller"],
-        "operationId": "getAllAdmins",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 0
-            }
-          },
-          {
-            "name": "size",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 10
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/CustomPageResAdminOne"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/v1/filter/get/{uuid}": {
       "get": {
         "tags": ["filter-controller"],
@@ -928,6 +693,93 @@
         }
       }
     },
+    "/api/v1/customer/me": {
+      "get": {
+        "tags": ["customer-controller"],
+        "operationId": "customerMe",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResCustomerMe"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/customer/get/{uuid}": {
+      "get": {
+        "tags": ["customer-controller"],
+        "operationId": "getCustomerByUuid",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResCustomerOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/customer/get/list": {
+      "get": {
+        "tags": ["customer-controller"],
+        "operationId": "getAllCustomers",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomPageResCustomerOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/category/get/{uuid}": {
       "get": {
         "tags": ["category-controller"],
@@ -950,6 +802,38 @@
               "*/*": {
                 "schema": {
                   "$ref": "#/components/schemas/ResCategoryOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/category/get/{uuid}/filters": {
+      "get": {
+        "tags": ["category-controller"],
+        "operationId": "getFiltersByCategoryUuid",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ResFilterOne"
+                  }
                 }
               }
             }
@@ -982,6 +866,25 @@
       "get": {
         "tags": ["category-controller"],
         "operationId": "getAll_1",
+        "parameters": [
+          {
+            "name": "parentId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1200,6 +1103,93 @@
         }
       }
     },
+    "/api/v1/admin/me": {
+      "get": {
+        "tags": ["admin-controller"],
+        "operationId": "adminMe",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResAdminMe"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/get/{uuid}": {
+      "get": {
+        "tags": ["admin-controller"],
+        "operationId": "getAdminByUuid",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResAdminOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/get/list": {
+      "get": {
+        "tags": ["admin-controller"],
+        "operationId": "getAllAdmins",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomPageResAdminOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/filter/delete/{uuid}": {
       "delete": {
         "tags": ["filter-controller"],
@@ -1377,88 +1367,6 @@
   },
   "components": {
     "schemas": {
-      "ReqUserUpdate": {
-        "type": "object",
-        "properties": {
-          "uuid": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "password": {
-            "type": "string"
-          },
-          "roleUuid": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "lang": {
-            "type": "string",
-            "enum": ["UZB", "RUS", "ENG"]
-          },
-          "status": {
-            "type": "string",
-            "enum": ["ACTIVE", "BLOCKED"]
-          }
-        }
-      },
-      "ResStringMessage": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string"
-          }
-        }
-      },
-      "ReqCustomerUpdate": {
-        "type": "object",
-        "properties": {
-          "uuid": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "middleName": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "birthDate": {
-            "type": "string",
-            "format": "date"
-          },
-          "gender": {
-            "type": "string"
-          },
-          "userUuid": {
-            "type": "string",
-            "format": "uuid"
-          }
-        }
-      },
-      "ReqAdminUpdate": {
-        "type": "object",
-        "properties": {
-          "uuid": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          }
-        }
-      },
       "LocalizedText": {
         "type": "object",
         "properties": {
@@ -1496,6 +1404,14 @@
           }
         }
       },
+      "ResStringMessage": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
       "ReqFilterGroupUpdate": {
         "type": "object",
         "properties": {
@@ -1509,6 +1425,35 @@
           "orderNumber": {
             "type": "integer",
             "format": "int32"
+          }
+        }
+      },
+      "ReqCustomerUpdate": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "middleName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "gender": {
+            "type": "string",
+            "enum": ["MALE", "FEMALE", "OTHER"]
           }
         }
       },
@@ -1620,6 +1565,24 @@
           "orderNumber": {
             "type": "integer",
             "format": "int32"
+          }
+        }
+      },
+      "ReqAdminUpdate": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
           }
         }
       },
@@ -1739,27 +1702,6 @@
           "refreshTokenExpire": {
             "type": "integer",
             "format": "int64"
-          },
-          "permissions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ResUserPermissionOne"
-            }
-          }
-        }
-      },
-      "ResUserPermissionOne": {
-        "type": "object",
-        "properties": {
-          "uuid": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "name": {
-            "type": "string"
-          },
-          "displayName": {
-            "type": "string"
           }
         }
       },
@@ -1819,154 +1761,6 @@
           }
         }
       },
-      "ResUserOne": {
-        "type": "object",
-        "properties": {
-          "uuid": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "username": {
-            "type": "string"
-          },
-          "roleUuid": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "roleName": {
-            "type": "string"
-          },
-          "lang": {
-            "type": "string",
-            "enum": ["UZB", "RUS", "ENG"]
-          },
-          "status": {
-            "type": "string",
-            "enum": ["ACTIVE", "BLOCKED"]
-          }
-        }
-      },
-      "CustomPageResUserOne": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ResUserOne"
-            }
-          },
-          "paginationData": {
-            "$ref": "#/components/schemas/PaginationData"
-          }
-        }
-      },
-      "PaginationData": {
-        "type": "object",
-        "properties": {
-          "numberOfElements": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalElements": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "currentPageNumber": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "ResCustomerOne": {
-        "type": "object",
-        "properties": {
-          "uuid": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "middleName": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "birthDate": {
-            "type": "string",
-            "format": "date"
-          },
-          "gender": {
-            "type": "string"
-          },
-          "userUuid": {
-            "type": "string",
-            "format": "uuid"
-          }
-        }
-      },
-      "CustomPageResCustomerOne": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ResCustomerOne"
-            }
-          },
-          "paginationData": {
-            "$ref": "#/components/schemas/PaginationData"
-          }
-        }
-      },
-      "ResAdminOne": {
-        "type": "object",
-        "properties": {
-          "uuid": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "userUuid": {
-            "type": "string",
-            "format": "uuid"
-          }
-        }
-      },
-      "CustomPageResAdminOne": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ResAdminOne"
-            }
-          },
-          "paginationData": {
-            "$ref": "#/components/schemas/PaginationData"
-          }
-        }
-      },
       "ResFilterOne": {
         "type": "object",
         "properties": {
@@ -2013,6 +1807,129 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ResFilterGroupOne"
+            }
+          },
+          "paginationData": {
+            "$ref": "#/components/schemas/PaginationData"
+          }
+        }
+      },
+      "PaginationData": {
+        "type": "object",
+        "properties": {
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currentPageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResCustomerMe": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "middleName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "gender": {
+            "type": "string",
+            "enum": ["MALE", "FEMALE", "OTHER"]
+          },
+          "userUuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "username": {
+            "type": "string"
+          },
+          "roleUuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "roleName": {
+            "type": "string"
+          },
+          "lang": {
+            "type": "string",
+            "enum": ["UZB", "RUS", "ENG"]
+          },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "BLOCKED"]
+          }
+        }
+      },
+      "ResCustomerOne": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "middleName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "gender": {
+            "type": "string",
+            "enum": ["MALE", "FEMALE", "OTHER"]
+          },
+          "userUuid": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "CustomPageResCustomerOne": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResCustomerOne"
             }
           },
           "paginationData": {
@@ -2102,6 +2019,21 @@
           }
         }
       },
+      "ResUserPermissionOne": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          }
+        }
+      },
       "ResUserRoleOne": {
         "type": "object",
         "properties": {
@@ -2169,6 +2101,88 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ResAttributeGroupOne"
+            }
+          },
+          "paginationData": {
+            "$ref": "#/components/schemas/PaginationData"
+          }
+        }
+      },
+      "ResAdminMe": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "userUuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "username": {
+            "type": "string"
+          },
+          "roleUuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "roleName": {
+            "type": "string"
+          },
+          "lang": {
+            "type": "string",
+            "enum": ["UZB", "RUS", "ENG"]
+          },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "BLOCKED"]
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResUserPermissionOne"
+            }
+          }
+        }
+      },
+      "ResAdminOne": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "userUuid": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "CustomPageResAdminOne": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResAdminOne"
             }
           },
           "paginationData": {

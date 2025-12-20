@@ -15,7 +15,7 @@ const useSidebarMenu = () => {
     {
       icon: <StoreLocationIcon />,
       name: t('Home'),
-      path: '/management/',
+      path: '/management',
     },
     {
       icon: <FolderIcon />,
@@ -23,9 +23,8 @@ const useSidebarMenu = () => {
       subItems: [
         { name: t('Categories'), path: '/management/catalog/categories' },
         { name: t('Filters'), path: '/management/catalog/filters' },
-        { name: t('Filter groups'), path: '/management/catalog/filter-groups' },
-        // { name: t('Attributes'), path: '/management/catalog/attributes' },
-        // { name: t('Attribute groups'), path: '/management/catalog/attribute-groups' },
+        { name: t('Attribute groups'), path: '/management/catalog/attribute-groups' },
+        { name: t('Attributes'), path: '/management/catalog/attributes' },
         // { name: t('Options'), path: '/management/catalog/options' },
       ],
     },
@@ -36,7 +35,7 @@ const useSidebarMenu = () => {
     //     { name: t('Product confirmation'), path: '/management/products/confirmation' },
     //     { name: t('Suppliers'), path: '/management/products/suppliers' },
     //     { name: t('Manufacturers'), path: '/management/products/manufacturers' },
-    //     { name: t('Filters'), path: '/management/products/filters' },
+    //     { name: t('Filte rs'), path: '/management/products/filters' },
     //     { name: 'Кэшбэк', path: '/management/products/cashback' },
     //   ],
     // },

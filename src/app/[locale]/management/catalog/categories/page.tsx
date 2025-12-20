@@ -8,15 +8,13 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Button, Modal, Table, Tag, message } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
-import AddEditCategoryModal from './_components/AddEditCategoryModal';
+import { useRouter } from 'next/navigation';
 
 export default function CategoriesPage() {
   const t = useTranslations();
   const getWord = useGetTranslatedWord();
   const queryClient = useQueryClient();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedCategoryUuid, setSelectedCategoryUuid] = useState<string | undefined>();
+  const router = useRouter();
 
   const { data: categories, isLoading } = useQuery({
     queryKey: ['categories'],
@@ -33,16 +31,6 @@ export default function CategoriesPage() {
       message.error(t('Failed to delete category'));
     },
   });
-
-  const handleOpenModal = (categoryUuid?: string) => {
-    setSelectedCategoryUuid(categoryUuid);
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setSelectedCategoryUuid(undefined);
-  };
 
   const handleDelete = (uuid: string, name: string) => {
     Modal.confirm({
@@ -115,7 +103,7 @@ export default function CategoriesPage() {
             type="primary"
             icon={<PencilIcon className="w-4 h-4" />}
             size="small"
-            onClick={() => handleOpenModal(record.uuid)}
+            onClick={() => router.push(`/management/catalog/categories/${record.uuid}`)}
           />
           <Button
             danger
@@ -131,17 +119,18 @@ export default function CategoriesPage() {
   return (
     <div>
       <PageHeader
-        breadcrumbs={[{ label: 'Каталог', href: '/management/catalog' }, { label: 'Категории' }]}
+        breadcrumbs={[{ label: 'Каталог' }, { label: 'Категории' }]}
         actions={
           <Button
             type="primary"
             icon={<PlusIcon className="w-4 h-4" />}
-            onClick={() => handleOpenModal()}
+            onClick={() => router.push('/management/catalog/categories/create')}
           >
             {t('Add')}
           </Button>
         }
       />
+
       <div className="mt-4">
         <Table
           columns={columns}
@@ -157,12 +146,6 @@ export default function CategoriesPage() {
           scroll={{ x: 1000 }}
         />
       </div>
-
-      <AddEditCategoryModal
-        open={isModalOpen}
-        onClose={handleCloseModal}
-        categoryUuid={selectedCategoryUuid}
-      />
     </div>
   );
 }

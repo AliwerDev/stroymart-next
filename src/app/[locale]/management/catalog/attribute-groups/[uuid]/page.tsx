@@ -1,53 +1,65 @@
 'use client';
 import { PencilIcon, PlusIcon, TrashIcon } from '@/components/icons';
 import PageHeader from '@/components/landing/PageHeader';
-import { filterGroupApi } from '@/data/filter-group/filter-group.api';
-import { ResFilterGroupOne } from '@/data/filter-group/filter-group.types';
+import { attributeGroupApi } from '@/data/attribute-group/attribute-group.api';
+import { attributeApi } from '@/data/attribute/attribute.api';
+import { ResAttributeOne } from '@/data/attribute/attribute.types';
 import useGetTranslatedWord from '@/hooks/useGetTranslatedWord';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Button, Modal, Table, message } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
-import AddEditFilterGroupModal from './_components/AddEditFilterGroupModal';
+import AddEditAttributeModal from './_components/AddEditAttributeModal';
 
-export default function FilterGroupsPage() {
+interface AttributesPageProps {
+  params: {
+    uuid: string;
+  };
+}
+
+export default function AttributesPage({ params }: AttributesPageProps) {
   const t = useTranslations();
   const getWord = useGetTranslatedWord();
   const queryClient = useQueryClient();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedFilterGroupUuid, setSelectedFilterGroupUuid] = useState<string | undefined>();
+  const [selectedAttributeUuid, setSelectedAttributeUuid] = useState<string | undefined>();
 
-  const { data: filterGroups, isLoading } = useQuery({
-    queryKey: ['filter-groups'],
-    queryFn: filterGroupApi.getAll,
+  const { data: attributeGroup } = useQuery({
+    queryKey: ['attribute-group', params.uuid],
+    queryFn: () => attributeGroupApi.getOne(params.uuid),
+  });
+
+  const { data: attributes, isLoading } = useQuery({
+    queryKey: ['attributes', params.uuid],
+    queryFn: () => attributeApi.getAll(params.uuid),
   });
 
   const deleteMutation = useMutation({
-    mutationFn: (uuid: string) => filterGroupApi.delete(uuid),
+    mutationFn: (uuid: string) => attributeApi.delete(uuid),
     onSuccess: () => {
-      message.success(t('Filter group deleted successfully'));
-      queryClient.invalidateQueries({ queryKey: ['filter-groups'] });
+      message.success(t('Attribute deleted successfully'));
+      queryClient.invalidateQueries({ queryKey: ['attributes', params.uuid] });
     },
     onError: () => {
-      message.error(t('Failed to delete filter group'));
+      message.error(t('Failed to delete attribute'));
     },
   });
 
-  const handleOpenModal = (filterGroupUuid?: string) => {
-    setSelectedFilterGroupUuid(filterGroupUuid);
+  const handleOpenModal = (attributeUuid?: string) => {
+    setSelectedAttributeUuid(attributeUuid);
     setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    setSelectedFilterGroupUuid(undefined);
+    setSelectedAttributeUuid(undefined);
   };
 
-  const handleDelete = (uuid: string, name: string) => {
+  const handleDelete = (uuid: string, key: string) => {
     Modal.confirm({
-      title: t('Delete Filter Group'),
-      content: t('Are you sure you want to delete this filter group?', { name }),
+      title: t('Delete Attribute'),
+      content: t('Are you sure you want to delete this attribute?', { name: key }),
       okText: t('Delete'),
       okType: 'danger',
       cancelText: t('Cancel'),
@@ -58,7 +70,7 @@ export default function FilterGroupsPage() {
     });
   };
 
-  const columns: ColumnsType<ResFilterGroupOne> = [
+  const columns: ColumnsType<ResAttributeOne> = [
     {
       title: '#',
       dataIndex: 'index',
@@ -68,10 +80,18 @@ export default function FilterGroupsPage() {
       render: (_, __, index) => index + 1,
     },
     {
-      title: t('Name'),
-      dataIndex: 'name',
-      key: 'name',
-      render: (_: ResFilterGroupOne['name'], record: ResFilterGroupOne) => getWord(record, 'name'),
+      title: t('Key'),
+      dataIndex: 'key',
+      key: 'key',
+      render: (_: ResAttributeOne['key'], record: ResAttributeOne) => getWord(record, 'key'),
+    },
+    {
+      title: t('Is Main'),
+      dataIndex: 'isMain',
+      key: 'isMain',
+      width: 100,
+      align: 'center',
+      render: (isMain: boolean) => (isMain ? t('Yes') : t('No')),
     },
     {
       title: t('Order'),
@@ -98,7 +118,7 @@ export default function FilterGroupsPage() {
             danger
             icon={<TrashIcon className="w-4 h-4" />}
             size="small"
-            onClick={() => handleDelete(record.uuid, getWord(record, 'name'))}
+            onClick={() => handleDelete(record.uuid, getWord(record, 'key'))}
           />
         </div>
       ),
@@ -109,8 +129,9 @@ export default function FilterGroupsPage() {
     <div>
       <PageHeader
         breadcrumbs={[
-          { label: t('Catalog'), href: '/management/catalog' },
-          { label: t('Filter Groups') },
+          { label: t('Catalog') },
+          { label: t('Attribute Groups'), href: '/management/catalog/attribute-groups' },
+          { label: attributeGroup ? getWord(attributeGroup, 'name') : '...' },
         ]}
         actions={
           <Button
@@ -125,7 +146,7 @@ export default function FilterGroupsPage() {
       <div className="mt-4">
         <Table
           columns={columns}
-          dataSource={filterGroups?.data}
+          dataSource={attributes}
           rowKey="uuid"
           loading={isLoading}
           pagination={{
@@ -138,10 +159,11 @@ export default function FilterGroupsPage() {
         />
       </div>
 
-      <AddEditFilterGroupModal
+      <AddEditAttributeModal
         open={isModalOpen}
         onClose={handleCloseModal}
-        filterGroupUuid={selectedFilterGroupUuid}
+        attributeUuid={selectedAttributeUuid}
+        defaultAttributeGroupUuid={params.uuid}
       />
     </div>
   );

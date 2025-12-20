@@ -45,7 +45,10 @@ const FormLanguageTabs = ({ activeLang, onLanguageChange, className }: FormLangu
             key: 'uzl' as Language,
             label: (
               <Badge count={errorCounts.uzl} offset={[10, 0]}>
-                {t('UZ Latin')}
+                <span className="flex items-center gap-1.5">
+                  <span className="text-base">🇺🇿</span>
+                  <span className="text-sm">{t('UZ Latin')}</span>
+                </span>
               </Badge>
             ),
           },
@@ -53,7 +56,10 @@ const FormLanguageTabs = ({ activeLang, onLanguageChange, className }: FormLangu
             key: 'uzc' as Language,
             label: (
               <Badge count={errorCounts.uzc} offset={[10, 0]}>
-                {t('UZ Cyrillic')}
+                <span className="flex items-center gap-1.5">
+                  <span className="text-base">🇺🇿</span>
+                  <span className="text-sm">{t('UZ Cyrillic')}</span>
+                </span>
               </Badge>
             ),
           },
@@ -61,7 +67,10 @@ const FormLanguageTabs = ({ activeLang, onLanguageChange, className }: FormLangu
             key: 'ru' as Language,
             label: (
               <Badge count={errorCounts.ru} offset={[10, 0]}>
-                {t('RU')}
+                <span className="flex items-center gap-1.5">
+                  <span className="text-base">🇷🇺</span>
+                  <span className="text-sm">{t('RU')}</span>
+                </span>
               </Badge>
             ),
           },

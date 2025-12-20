@@ -23,6 +23,7 @@ const AppHeader: React.FC = () => {
   const toggleApplicationMenu = () => {
     setApplicationMenuOpen(!isApplicationMenuOpen);
   };
+
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -51,17 +52,17 @@ const AppHeader: React.FC = () => {
           >
             {isMobileOpen ? <ExitIcon className="w-6 h-6" /> : <MenuIcon className="w-5 h-5" />}
           </button>
-
           <Link href="/" className="lg:hidden">
             <Image width={154} height={32} className="" src="./images/logo/logo.svg" alt="Logo" />
           </Link>
-
           <button
             onClick={toggleApplicationMenu}
             className="flex items-center justify-center w-10 h-9 text-gray-700 rounded-lg z-99999 hover:bg-gray-100 lg:hidden"
           >
             <SidebarOpenIcon />
           </button>
+
+          <div id="breadcrumb-container"></div>
         </div>
         <div
           className={`${

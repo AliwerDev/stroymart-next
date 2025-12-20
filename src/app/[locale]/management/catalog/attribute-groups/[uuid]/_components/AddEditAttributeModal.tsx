@@ -1,97 +1,97 @@
 'use client';
 import FormLanguageTabs from '@/components/common/FormLanguageTabs';
 import TranslatedTextInput from '@/components/common/TranslatedTextInput/TranslatedTextInput';
+import { attributeApi } from '@/data/attribute/attribute.api';
+import { ReqAttributeCreate, ReqAttributeUpdate } from '@/data/attribute/attribute.types';
 import { Language } from '@/data/common/common.types';
-import { filterApi } from '@/data/filter/filter.api';
-import { ReqFilterCreate, ReqFilterUpdate } from '@/data/filter/filter.types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Form, Input, InputNumber, Modal, Spin, message } from 'antd';
+import { Checkbox, Form, InputNumber, Modal, Spin, message } from 'antd';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
-interface AddEditFilterModalProps {
+interface AddEditAttributeModalProps {
   open: boolean;
   onClose: () => void;
-  filterUuid?: string;
-  filterGroupUuid: string;
+  attributeUuid?: string;
+  defaultAttributeGroupUuid: string;
 }
 
-const AddEditFilterModal = ({
+const AddEditAttributeModal = ({
   open,
   onClose,
-  filterUuid,
-  filterGroupUuid,
-}: AddEditFilterModalProps) => {
+  attributeUuid,
+  defaultAttributeGroupUuid,
+}: AddEditAttributeModalProps) => {
   const t = useTranslations();
   const [form] = Form.useForm();
   const queryClient = useQueryClient();
   const [activeLang, setActiveLang] = useState<Language>('uzl');
 
-  const isEdit = !!filterUuid;
+  const isEdit = !!attributeUuid;
 
-  const { data: filterData, isLoading: isLoadingFilter } = useQuery({
-    queryKey: ['filter', filterUuid],
-    queryFn: () => filterApi.getOne(filterUuid!),
+  const { data: attributeData, isLoading: isLoadingAttribute } = useQuery({
+    queryKey: ['attribute', attributeUuid],
+    queryFn: () => attributeApi.getOne(attributeUuid!),
     enabled: isEdit && open,
   });
 
   const createMutation = useMutation({
-    mutationFn: (data: ReqFilterCreate) => filterApi.create(data),
+    mutationFn: (data: ReqAttributeCreate) => attributeApi.create(data),
     onSuccess: () => {
-      message.success(t('Filter created successfully'));
-      queryClient.invalidateQueries({ queryKey: ['filters', filterGroupUuid] });
+      message.success(t('Attribute created successfully'));
+      queryClient.invalidateQueries({ queryKey: ['attributes', defaultAttributeGroupUuid] });
       onClose();
       form.resetFields();
     },
     onError: () => {
-      message.error(t('Failed to create filter'));
+      message.error(t('Failed to create attribute'));
     },
   });
 
   const updateMutation = useMutation({
-    mutationFn: (data: ReqFilterUpdate) => filterApi.update(data),
+    mutationFn: (data: ReqAttributeUpdate) => attributeApi.update(data),
     onSuccess: () => {
-      message.success(t('Filter updated successfully'));
-      queryClient.invalidateQueries({ queryKey: ['filters', filterGroupUuid] });
-      queryClient.invalidateQueries({ queryKey: ['filter', filterUuid] });
+      message.success(t('Attribute updated successfully'));
+      queryClient.invalidateQueries({ queryKey: ['attributes', defaultAttributeGroupUuid] });
+      queryClient.invalidateQueries({ queryKey: ['attribute', attributeUuid] });
       onClose();
     },
     onError: () => {
-      message.error(t('Failed to update filter'));
+      message.error(t('Failed to update attribute'));
     },
   });
 
   useEffect(() => {
-    if (filterData && open) {
+    if (attributeData && open) {
       form.setFieldsValue({
-        name_uzl: filterData.name?.uzl,
-        name_uzc: filterData.name?.uzc,
-        name_ru: filterData.name?.ru,
-        iconUrl: filterData.iconUrl,
-        orderNumber: filterData.orderNumber,
+        key_uzl: attributeData.key?.uzl,
+        key_uzc: attributeData.key?.uzc,
+        key_ru: attributeData.key?.ru,
+        isMain: attributeData.isMain,
+        orderNumber: attributeData.orderNumber,
       });
     } else if (!open) {
       form.resetFields();
     }
-  }, [filterData, open, form, isEdit]);
+  }, [attributeData, open, form, isEdit]);
 
   const handleSubmit = async () => {
     try {
       const values = await form.validateFields();
 
       const payload = {
-        name: {
-          uzl: values.name_uzl,
-          uzc: values.name_uzc,
-          ru: values.name_ru,
+        key: {
+          uzl: values.key_uzl,
+          uzc: values.key_uzc,
+          ru: values.key_ru,
         },
-        iconUrl: values.iconUrl || '',
+        isMain: values.isMain || false,
         orderNumber: values.orderNumber || 0,
-        filterGroupUuid: filterGroupUuid,
+        attributeGroupUuid: defaultAttributeGroupUuid,
       };
 
       if (isEdit) {
-        updateMutation.mutate({ ...payload, uuid: filterUuid });
+        updateMutation.mutate({ ...payload, uuid: attributeUuid });
       } else {
         createMutation.mutate(payload);
       }
@@ -102,7 +102,7 @@ const AddEditFilterModal = ({
 
   return (
     <Modal
-      title={isEdit ? t('Edit Filter') : t('Add Filter')}
+      title={isEdit ? t('Edit Attribute') : t('Add Attribute')}
       open={open}
       onCancel={onClose}
       onOk={handleSubmit}
@@ -111,7 +111,7 @@ const AddEditFilterModal = ({
       okText={isEdit ? t('Update') : t('Create')}
       cancelText={t('Cancel')}
     >
-      <Spin spinning={isEdit && isLoadingFilter}>
+      <Spin spinning={isEdit && isLoadingAttribute}>
         <Form form={form} layout="vertical">
           <FormLanguageTabs
             activeLang={activeLang}
@@ -120,19 +120,15 @@ const AddEditFilterModal = ({
           />
 
           <TranslatedTextInput
-            name="name"
-            label={t('Name')}
+            name="key"
+            label={t('Key')}
             required
             type="input"
             activeLang={activeLang}
           />
 
-          <Form.Item
-            label={t('Icon URL')}
-            name="iconUrl"
-            rules={[{ required: true, message: t('Required field') }]}
-          >
-            <Input placeholder={t('Enter icon URL')} size="large" />
+          <Form.Item name="isMain" valuePropName="checked">
+            <Checkbox>{t('Is Main')}</Checkbox>
           </Form.Item>
 
           <Form.Item label={t('Order Number')} name="orderNumber">
@@ -144,4 +140,4 @@ const AddEditFilterModal = ({
   );
 };
 
-export default AddEditFilterModal;
+export default AddEditAttributeModal;

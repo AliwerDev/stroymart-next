@@ -13,6 +13,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 const AppSidebar: React.FC = () => {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
   const pathname = usePathname();
+  const pathWithoutLocale = pathname.replace(/^\/\w+/, '');
   const navItems = useSidebarMenu();
 
   const renderMenuItems = (navItems: NavItem[]) => (
@@ -77,7 +78,7 @@ const AppSidebar: React.FC = () => {
                 height: openSubmenu === index ? `${subMenuHeight[index]}px` : '0px',
               }}
             >
-              <ul className="mt-2 space-y-1 ml-9">
+              <ul className="mt-2 space-y-1 ml-4">
                 {nav.subItems.map((subItem) => (
                   <li key={subItem.name}>
                     <Link
@@ -128,11 +129,17 @@ const AppSidebar: React.FC = () => {
   const [subMenuHeight, setSubMenuHeight] = useState<Record<number, number>>({});
   const subMenuRefs = useRef<Record<number, HTMLDivElement | null>>({});
 
-  // const isActive = (path: string) => path === pathname;
-  const isActive = useCallback((path: string) => path === pathname, [pathname]);
+  const isActive = useCallback(
+    (path: string) => {
+      if (path === '/management') {
+        return pathWithoutLocale === path;
+      }
+      return pathWithoutLocale.startsWith(path);
+    },
+    [pathWithoutLocale]
+  );
 
   useEffect(() => {
-    // Check if the current path matches any submenu item
     let submenuMatched = false;
     navItems.forEach((nav, index) => {
       if (nav.subItems) {
@@ -145,14 +152,12 @@ const AppSidebar: React.FC = () => {
       }
     });
 
-    // If no submenu item matches, close the open submenu
     if (!submenuMatched) {
       setOpenSubmenu(null);
     }
   }, [pathname, isActive]);
 
   useEffect(() => {
-    // Set the height of the submenu items when the submenu is opened
     if (openSubmenu !== null) {
       const key = openSubmenu;
       if (subMenuRefs.current[key]) {
@@ -183,7 +188,7 @@ const AppSidebar: React.FC = () => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div
-        className={`py-6 flex  ${
+        className={`py-4 flex  ${
           !isExpanded && !isHovered ? 'lg:justify-center' : 'justify-start'
         }`}
       >
