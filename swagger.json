@@ -11,10 +11,66 @@
     }
   ],
   "paths": {
+    "/api/v1/seller/update": {
+      "put": {
+        "tags": ["seller-controller"],
+        "operationId": "update",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqSellerUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/product/update": {
+      "put": {
+        "tags": ["product-controller"],
+        "operationId": "update_1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqProductUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/filter/update": {
       "put": {
         "tags": ["filter-controller"],
-        "operationId": "update",
+        "operationId": "update_2",
         "requestBody": {
           "content": {
             "application/json": {
@@ -42,7 +98,7 @@
     "/api/v1/filter-group/update": {
       "put": {
         "tags": ["filter-group-controller"],
-        "operationId": "update_1",
+        "operationId": "update_3",
         "requestBody": {
           "content": {
             "application/json": {
@@ -98,7 +154,7 @@
     "/api/v1/category/update": {
       "put": {
         "tags": ["category-controller"],
-        "operationId": "update_2",
+        "operationId": "update_4",
         "requestBody": {
           "content": {
             "application/json": {
@@ -154,7 +210,7 @@
     "/api/v1/attribute/update": {
       "put": {
         "tags": ["attribute-controller"],
-        "operationId": "update_3",
+        "operationId": "update_5",
         "requestBody": {
           "content": {
             "application/json": {
@@ -182,7 +238,7 @@
     "/api/v1/attribute-group/update": {
       "put": {
         "tags": ["attribute-group-controller"],
-        "operationId": "update_4",
+        "operationId": "update_6",
         "requestBody": {
           "content": {
             "application/json": {
@@ -235,10 +291,122 @@
         }
       }
     },
+    "/api/v1/seller/init": {
+      "post": {
+        "tags": ["seller-controller"],
+        "operationId": "initSeller",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqSellerInit"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/seller/confirm": {
+      "post": {
+        "tags": ["seller-controller"],
+        "operationId": "confirmSeller",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqSellerConfirm"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/product/create": {
+      "post": {
+        "tags": ["product-controller"],
+        "operationId": "create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqProductCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/product/calculate-price": {
+      "post": {
+        "tags": ["product-controller"],
+        "operationId": "calculatePrice",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqProductCalculatePrice"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResProductCalculatePrice"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/filter/create": {
       "post": {
         "tags": ["filter-controller"],
-        "operationId": "create",
+        "operationId": "create_1",
         "requestBody": {
           "content": {
             "application/json": {
@@ -266,7 +434,7 @@
     "/api/v1/filter-group/create": {
       "post": {
         "tags": ["filter-group-controller"],
-        "operationId": "create_1",
+        "operationId": "create_2",
         "requestBody": {
           "content": {
             "application/json": {
@@ -291,10 +459,72 @@
         }
       }
     },
+    "/api/v1/file/upload": {
+      "post": {
+        "tags": ["file-controller"],
+        "operationId": "upload",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": ["file"],
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResFileOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/file/delete": {
+      "post": {
+        "tags": ["file-controller"],
+        "operationId": "delete",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqDeleteItem"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/category/create": {
       "post": {
         "tags": ["category-controller"],
-        "operationId": "create_2",
+        "operationId": "create_3",
         "requestBody": {
           "content": {
             "application/json": {
@@ -462,7 +692,7 @@
     "/api/v1/attribute/create": {
       "post": {
         "tags": ["attribute-controller"],
-        "operationId": "create_3",
+        "operationId": "create_4",
         "requestBody": {
           "content": {
             "application/json": {
@@ -490,7 +720,7 @@
     "/api/v1/attribute-group/create": {
       "post": {
         "tags": ["attribute-group-controller"],
-        "operationId": "create_4",
+        "operationId": "create_5",
         "requestBody": {
           "content": {
             "application/json": {
@@ -515,10 +745,189 @@
         }
       }
     },
+    "/api/v1/seller/get/{uuid}": {
+      "get": {
+        "tags": ["seller-controller"],
+        "operationId": "getByUuid",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResSellerOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/seller/get/list": {
+      "get": {
+        "tags": ["seller-controller"],
+        "operationId": "getAll",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "fullName",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["ACTIVE", "INACTIVE", "BLOCKED"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomPageResSellerOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/product/get/{uuid}": {
+      "get": {
+        "tags": ["product-controller"],
+        "operationId": "getByUuid_1",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResProductOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/product/get/list": {
+      "get": {
+        "tags": ["product-controller"],
+        "operationId": "getAll_1",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "categoryUuid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "sellerUuid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomPageResProductOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/filter/get/{uuid}": {
       "get": {
         "tags": ["filter-controller"],
-        "operationId": "getByUuid",
+        "operationId": "getByUuid_2",
         "parameters": [
           {
             "name": "uuid",
@@ -576,10 +985,48 @@
         }
       }
     },
+    "/api/v1/filter/get/list/page": {
+      "get": {
+        "tags": ["filter-controller"],
+        "operationId": "getAll_2",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomPageResFilterOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/filter-group/get/{uuid}": {
       "get": {
         "tags": ["filter-group-controller"],
-        "operationId": "getByUuid_1",
+        "operationId": "getByUuid_3",
         "parameters": [
           {
             "name": "uuid",
@@ -656,7 +1103,7 @@
     "/api/v1/filter-group/get/list": {
       "get": {
         "tags": ["filter-group-controller"],
-        "operationId": "getAll",
+        "operationId": "getAll_3",
         "parameters": [
           {
             "name": "page",
@@ -783,7 +1230,7 @@
     "/api/v1/category/get/{uuid}": {
       "get": {
         "tags": ["category-controller"],
-        "operationId": "getByUuid_2",
+        "operationId": "getByUuid_4",
         "parameters": [
           {
             "name": "uuid",
@@ -832,7 +1279,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/ResFilterOne"
+                    "$ref": "#/components/schemas/ResFilterGroupWithFilters"
                   }
                 }
               }
@@ -865,7 +1312,7 @@
     "/api/v1/category/get/list": {
       "get": {
         "tags": ["category-controller"],
-        "operationId": "getAll_1",
+        "operationId": "getAll_4",
         "parameters": [
           {
             "name": "parentId",
@@ -976,7 +1423,7 @@
     "/api/v1/attribute/get/{uuid}": {
       "get": {
         "tags": ["attribute-controller"],
-        "operationId": "getByUuid_3",
+        "operationId": "getByUuid_5",
         "parameters": [
           {
             "name": "uuid",
@@ -1005,7 +1452,45 @@
     "/api/v1/attribute/get/list": {
       "get": {
         "tags": ["attribute-controller"],
-        "operationId": "getAll_2",
+        "operationId": "getAll_5",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomPageResAttributeOne"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/attribute/get/list/by-group": {
+      "get": {
+        "tags": ["attribute-controller"],
+        "operationId": "getAllByAttributeGroupUuid",
         "parameters": [
           {
             "name": "attributeGroupUuid",
@@ -1037,7 +1522,7 @@
     "/api/v1/attribute-group/get/{uuid}": {
       "get": {
         "tags": ["attribute-group-controller"],
-        "operationId": "getByUuid_4",
+        "operationId": "getByUuid_6",
         "parameters": [
           {
             "name": "uuid",
@@ -1066,7 +1551,7 @@
     "/api/v1/attribute-group/get/list": {
       "get": {
         "tags": ["attribute-group-controller"],
-        "operationId": "getAll_3",
+        "operationId": "getAll_6",
         "parameters": [
           {
             "name": "page",
@@ -1190,10 +1675,92 @@
         }
       }
     },
+    "/api/v1/address/get/list/regions": {
+      "get": {
+        "tags": ["address-controller"],
+        "operationId": "getAllRegions",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ResRegionOne"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/address/get/list/regions/{regionUuid}/districts": {
+      "get": {
+        "tags": ["address-controller"],
+        "operationId": "getAllDistrictsByRegionUuid",
+        "parameters": [
+          {
+            "name": "regionUuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ResDistrictOne"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/product/delete/{uuid}": {
+      "delete": {
+        "tags": ["product-controller"],
+        "operationId": "delete_1",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResStringMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/filter/delete/{uuid}": {
       "delete": {
         "tags": ["filter-controller"],
-        "operationId": "delete",
+        "operationId": "delete_2",
         "parameters": [
           {
             "name": "uuid",
@@ -1222,7 +1789,7 @@
     "/api/v1/filter-group/delete/{uuid}": {
       "delete": {
         "tags": ["filter-group-controller"],
-        "operationId": "delete_1",
+        "operationId": "delete_3",
         "parameters": [
           {
             "name": "uuid",
@@ -1251,7 +1818,7 @@
     "/api/v1/category/delete/{uuid}": {
       "delete": {
         "tags": ["category-controller"],
-        "operationId": "delete_2",
+        "operationId": "delete_4",
         "parameters": [
           {
             "name": "uuid",
@@ -1309,7 +1876,7 @@
     "/api/v1/attribute/delete/{uuid}": {
       "delete": {
         "tags": ["attribute-controller"],
-        "operationId": "delete_3",
+        "operationId": "delete_5",
         "parameters": [
           {
             "name": "uuid",
@@ -1338,7 +1905,7 @@
     "/api/v1/attribute-group/delete/{uuid}": {
       "delete": {
         "tags": ["attribute-group-controller"],
-        "operationId": "delete_4",
+        "operationId": "delete_6",
         "parameters": [
           {
             "name": "uuid",
@@ -1367,6 +1934,55 @@
   },
   "components": {
     "schemas": {
+      "ReqSellerUpdate": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "fullName": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "nds": {
+            "type": "boolean"
+          },
+          "yatt": {
+            "type": "boolean"
+          },
+          "isMonthlyCalculation": {
+            "type": "boolean"
+          },
+          "companyName": {
+            "type": "string"
+          },
+          "inn": {
+            "type": "string"
+          },
+          "requisite": {
+            "type": "string"
+          },
+          "regionUuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "userStatus": {
+            "type": "string",
+            "enum": ["ACTIVE", "INACTIVE", "BLOCKED"]
+          }
+        }
+      },
+      "ResStringMessage": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
       "LocalizedText": {
         "type": "object",
         "properties": {
@@ -1378,6 +1994,87 @@
           },
           "uzc": {
             "type": "string"
+          }
+        }
+      },
+      "ReqProductUpdate": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "description": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "shortDescription": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "model": {
+            "type": "string"
+          },
+          "skuCode": {
+            "type": "string"
+          },
+          "realPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "ikpyCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minQuantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "decStock": {
+            "type": "boolean"
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "width": {
+            "type": "number",
+            "format": "double"
+          },
+          "height": {
+            "type": "number",
+            "format": "double"
+          },
+          "length": {
+            "type": "number",
+            "format": "double"
+          },
+          "weight": {
+            "type": "number",
+            "format": "double"
+          },
+          "lengthType": {
+            "type": "string",
+            "enum": ["MM", "CM", "M", "KM"]
+          },
+          "weightType": {
+            "type": "string",
+            "enum": ["GR", "KG", "T"]
+          },
+          "categoryUuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "sellerUuid": {
+            "type": "string",
+            "format": "uuid"
           }
         }
       },
@@ -1401,14 +2098,6 @@
           "filterGroupUuid": {
             "type": "string",
             "format": "uuid"
-          }
-        }
-      },
-      "ResStringMessage": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string"
           }
         }
       },
@@ -1533,10 +2222,7 @@
             "type": "string",
             "format": "uuid"
           },
-          "key": {
-            "$ref": "#/components/schemas/LocalizedText"
-          },
-          "value": {
+          "name": {
             "$ref": "#/components/schemas/LocalizedText"
           },
           "isMain": {
@@ -1586,6 +2272,132 @@
           }
         }
       },
+      "ReqSellerInit": {
+        "type": "object",
+        "properties": {
+          "phoneNumber": {
+            "type": "string"
+          }
+        }
+      },
+      "ReqSellerConfirm": {
+        "type": "object",
+        "properties": {
+          "phoneNumber": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
+      "ReqProductCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "description": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "shortDescription": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "model": {
+            "type": "string"
+          },
+          "skuCode": {
+            "type": "string"
+          },
+          "realPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "ikpyCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minQuantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "decStock": {
+            "type": "boolean"
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "width": {
+            "type": "number",
+            "format": "double"
+          },
+          "height": {
+            "type": "number",
+            "format": "double"
+          },
+          "length": {
+            "type": "number",
+            "format": "double"
+          },
+          "weight": {
+            "type": "number",
+            "format": "double"
+          },
+          "lengthType": {
+            "type": "string",
+            "enum": ["MM", "CM", "M", "KM"]
+          },
+          "weightType": {
+            "type": "string",
+            "enum": ["GR", "KG", "T"]
+          },
+          "categoryUuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "sellerUuid": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "ReqProductCalculatePrice": {
+        "type": "object",
+        "properties": {
+          "realPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "categoryUuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "sellerUuid": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "ResProductCalculatePrice": {
+        "type": "object",
+        "properties": {
+          "realPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "customPrice": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
       "ReqFilterCreate": {
         "type": "object",
         "properties": {
@@ -1614,6 +2426,40 @@
           "orderNumber": {
             "type": "integer",
             "format": "int32"
+          }
+        }
+      },
+      "ResFileOne": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "objectName": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "contentType": {
+            "type": "string"
+          }
+        }
+      },
+      "ReqDeleteItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
           }
         }
       },
@@ -1730,10 +2576,7 @@
       "ReqAttributeCreate": {
         "type": "object",
         "properties": {
-          "key": {
-            "$ref": "#/components/schemas/LocalizedText"
-          },
-          "value": {
+          "name": {
             "$ref": "#/components/schemas/LocalizedText"
           },
           "isMain": {
@@ -1761,6 +2604,189 @@
           }
         }
       },
+      "ResSellerOne": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "userUuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "fullName": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "nds": {
+            "type": "boolean"
+          },
+          "yatt": {
+            "type": "boolean"
+          },
+          "isMonthlyCalculation": {
+            "type": "boolean"
+          },
+          "companyName": {
+            "type": "string"
+          },
+          "inn": {
+            "type": "string"
+          },
+          "requisite": {
+            "type": "string"
+          },
+          "regionUuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "userStatus": {
+            "type": "string",
+            "enum": ["ACTIVE", "INACTIVE", "BLOCKED"]
+          }
+        }
+      },
+      "CustomPageResSellerOne": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResSellerOne"
+            }
+          },
+          "paginationData": {
+            "$ref": "#/components/schemas/PaginationData"
+          }
+        }
+      },
+      "PaginationData": {
+        "type": "object",
+        "properties": {
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currentPageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ResProductOne": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "description": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "shortDescription": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "model": {
+            "type": "string"
+          },
+          "skuCode": {
+            "type": "string"
+          },
+          "customPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "realPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "ikpyCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minQuantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "decStock": {
+            "type": "boolean"
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "width": {
+            "type": "number",
+            "format": "double"
+          },
+          "height": {
+            "type": "number",
+            "format": "double"
+          },
+          "length": {
+            "type": "number",
+            "format": "double"
+          },
+          "weight": {
+            "type": "number",
+            "format": "double"
+          },
+          "lengthType": {
+            "type": "string",
+            "enum": ["MM", "CM", "M", "KM"]
+          },
+          "weightType": {
+            "type": "string",
+            "enum": ["GR", "KG", "T"]
+          },
+          "categoryUuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "sellerUuid": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "CustomPageResProductOne": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResProductOne"
+            }
+          },
+          "paginationData": {
+            "$ref": "#/components/schemas/PaginationData"
+          }
+        }
+      },
       "ResFilterOne": {
         "type": "object",
         "properties": {
@@ -1781,6 +2807,20 @@
           "filterGroupUuid": {
             "type": "string",
             "format": "uuid"
+          }
+        }
+      },
+      "CustomPageResFilterOne": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResFilterOne"
+            }
+          },
+          "paginationData": {
+            "$ref": "#/components/schemas/PaginationData"
           }
         }
       },
@@ -1811,31 +2851,6 @@
           },
           "paginationData": {
             "$ref": "#/components/schemas/PaginationData"
-          }
-        }
-      },
-      "PaginationData": {
-        "type": "object",
-        "properties": {
-          "numberOfElements": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalElements": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "currentPageNumber": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
           }
         }
       },
@@ -1886,7 +2901,7 @@
           },
           "status": {
             "type": "string",
-            "enum": ["ACTIVE", "BLOCKED"]
+            "enum": ["ACTIVE", "INACTIVE", "BLOCKED"]
           }
         }
       },
@@ -1980,6 +2995,28 @@
           }
         }
       },
+      "ResFilterGroupWithFilters": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "$ref": "#/components/schemas/LocalizedText"
+          },
+          "orderNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "filters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResFilterOne"
+            }
+          }
+        }
+      },
       "CategoryTreeResponse": {
         "type": "object",
         "properties": {
@@ -2059,10 +3096,7 @@
             "type": "string",
             "format": "uuid"
           },
-          "key": {
-            "$ref": "#/components/schemas/LocalizedText"
-          },
-          "value": {
+          "name": {
             "$ref": "#/components/schemas/LocalizedText"
           },
           "isMain": {
@@ -2075,6 +3109,20 @@
           "attributeGroupUuid": {
             "type": "string",
             "format": "uuid"
+          }
+        }
+      },
+      "CustomPageResAttributeOne": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResAttributeOne"
+            }
+          },
+          "paginationData": {
+            "$ref": "#/components/schemas/PaginationData"
           }
         }
       },
@@ -2144,7 +3192,7 @@
           },
           "status": {
             "type": "string",
-            "enum": ["ACTIVE", "BLOCKED"]
+            "enum": ["ACTIVE", "INACTIVE", "BLOCKED"]
           },
           "permissions": {
             "type": "array",
@@ -2187,6 +3235,34 @@
           },
           "paginationData": {
             "$ref": "#/components/schemas/PaginationData"
+          }
+        }
+      },
+      "ResRegionOne": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "ResDistrictOne": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "regionUuid": {
+            "type": "string",
+            "format": "uuid"
           }
         }
       }

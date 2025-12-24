@@ -70,10 +70,6 @@ export default function CategoriesPage() {
       render: (status: CategoryStatusEnum) => (
         <Tag color={status === CategoryStatusEnum.ACTIVE ? 'green' : 'red'}>{status}</Tag>
       ),
-      filters: [
-        { text: 'ACTIVE', value: CategoryStatusEnum.ACTIVE },
-        { text: 'INACTIVE', value: CategoryStatusEnum.INACTIVE },
-      ],
       onFilter: (value, record) => record.status === value,
     },
     {

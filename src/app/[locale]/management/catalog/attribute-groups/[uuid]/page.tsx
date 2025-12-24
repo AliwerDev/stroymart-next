@@ -10,7 +10,7 @@ import { Button, Modal, Table, message } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
-import AddEditAttributeModal from './_components/AddEditAttributeModal';
+import AddEditAttributeModal from '../_components/AddEditAttributeModal';
 
 interface AttributesPageProps {
   params: {
@@ -31,15 +31,15 @@ export default function AttributesPage({ params }: AttributesPageProps) {
   });
 
   const { data: attributes, isLoading } = useQuery({
-    queryKey: ['attributes', params.uuid],
-    queryFn: () => attributeApi.getAll(params.uuid),
+    queryKey: ['attributes-by-group', params.uuid],
+    queryFn: () => attributeApi.getAllByGroup(params.uuid),
   });
 
   const deleteMutation = useMutation({
     mutationFn: (uuid: string) => attributeApi.delete(uuid),
     onSuccess: () => {
       message.success(t('Attribute deleted successfully'));
-      queryClient.invalidateQueries({ queryKey: ['attributes', params.uuid] });
+      queryClient.invalidateQueries({ queryKey: ['attributes-by-group', params.uuid] });
     },
     onError: () => {
       message.error(t('Failed to delete attribute'));
@@ -56,10 +56,10 @@ export default function AttributesPage({ params }: AttributesPageProps) {
     setSelectedAttributeUuid(undefined);
   };
 
-  const handleDelete = (uuid: string, key: string) => {
+  const handleDelete = (uuid: string, name: string) => {
     Modal.confirm({
       title: t('Delete Attribute'),
-      content: t('Are you sure you want to delete this attribute?', { name: key }),
+      content: t('Are you sure you want to delete this attribute?', { name }),
       okText: t('Delete'),
       okType: 'danger',
       cancelText: t('Cancel'),
@@ -80,10 +80,10 @@ export default function AttributesPage({ params }: AttributesPageProps) {
       render: (_, __, index) => index + 1,
     },
     {
-      title: t('Key'),
-      dataIndex: 'key',
-      key: 'key',
-      render: (_: ResAttributeOne['key'], record: ResAttributeOne) => getWord(record, 'key'),
+      title: t('Name'),
+      dataIndex: 'name',
+      key: 'name',
+      render: (_: ResAttributeOne['name'], record: ResAttributeOne) => getWord(record, 'name'),
     },
     {
       title: t('Is Main'),
@@ -118,7 +118,7 @@ export default function AttributesPage({ params }: AttributesPageProps) {
             danger
             icon={<TrashIcon className="w-4 h-4" />}
             size="small"
-            onClick={() => handleDelete(record.uuid, getWord(record, 'key'))}
+            onClick={() => handleDelete(record.uuid, getWord(record, 'name'))}
           />
         </div>
       ),

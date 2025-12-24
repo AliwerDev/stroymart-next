@@ -2,7 +2,7 @@
   "apps": [
     {
       "script": "node_modules/next/dist/bin/next",
-      "name": "uzfit",
+      "name": "stroymart-next",
       "args": "start",
       "instances": "1",
       "exec_mode": "cluster",

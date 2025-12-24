@@ -1,11 +1,12 @@
 'use client';
+import FileUpload from '@/components/common/FileUpload';
 import FormLanguageTabs from '@/components/common/FormLanguageTabs';
 import TranslatedTextInput from '@/components/common/TranslatedTextInput/TranslatedTextInput';
 import { Language } from '@/data/common/common.types';
 import { filterApi } from '@/data/filter/filter.api';
 import { ReqFilterCreate, ReqFilterUpdate } from '@/data/filter/filter.types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Form, Input, InputNumber, Modal, Spin, message } from 'antd';
+import { Form, InputNumber, Modal, Spin, message } from 'antd';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
@@ -127,13 +128,14 @@ const AddEditFilterModal = ({
             activeLang={activeLang}
           />
 
-          <Form.Item
-            label={t('Icon URL')}
+          <FileUpload
             name="iconUrl"
-            rules={[{ required: true, message: t('Required field') }]}
-          >
-            <Input placeholder={t('Enter icon URL')} size="large" />
-          </Form.Item>
+            label={t('Icon')}
+            required
+            accept="image/*"
+            maxSize={2}
+            listType="picture-card"
+          />
 
           <Form.Item label={t('Order Number')} name="orderNumber">
             <InputNumber size="large" min={0} className="w-full!" />

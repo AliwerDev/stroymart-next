@@ -2,14 +2,14 @@ import { TranslatedText } from '../common/common.types';
 
 export interface ResAttributeOne {
   uuid: string;
-  key: TranslatedText;
+  name: TranslatedText;
   isMain: boolean;
   orderNumber: number;
   attributeGroupUuid: string;
 }
 
 export interface ReqAttributeCreate {
-  key: TranslatedText;
+  name: TranslatedText;
   isMain: boolean;
   orderNumber: number;
   attributeGroupUuid: string;
@@ -17,7 +17,7 @@ export interface ReqAttributeCreate {
 
 export interface ReqAttributeUpdate {
   uuid: string;
-  key: TranslatedText;
+  name: TranslatedText;
   isMain: boolean;
   orderNumber: number;
   attributeGroupUuid: string;

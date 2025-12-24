@@ -72,9 +72,9 @@ const AddEditAttributeModal = ({
   useEffect(() => {
     if (attributeData && open) {
       form.setFieldsValue({
-        key_uzl: attributeData.key?.uzl,
-        key_uzc: attributeData.key?.uzc,
-        key_ru: attributeData.key?.ru,
+        name_uzl: attributeData.name?.uzl,
+        name_uzc: attributeData.name?.uzc,
+        name_ru: attributeData.name?.ru,
         isMain: attributeData.isMain,
         orderNumber: attributeData.orderNumber,
         attributeGroupUuid: attributeData.attributeGroupUuid,
@@ -94,10 +94,10 @@ const AddEditAttributeModal = ({
       const values = await form.validateFields();
 
       const payload = {
-        key: {
-          uzl: values.key_uzl,
-          uzc: values.key_uzc,
-          ru: values.key_ru,
+        name: {
+          uzl: values.name_uzl,
+          uzc: values.name_uzc,
+          ru: values.name_ru,
         },
         isMain: values.isMain || false,
         orderNumber: values.orderNumber || 0,
@@ -149,8 +149,8 @@ const AddEditAttributeModal = ({
           </Form.Item>
 
           <TranslatedTextInput
-            name="key"
-            label={t('Key')}
+            name="name"
+            label={t('Name')}
             required
             type="input"
             activeLang={activeLang}

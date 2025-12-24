@@ -39,7 +39,9 @@ const AddEditAttributeModal = ({
     mutationFn: (data: ReqAttributeCreate) => attributeApi.create(data),
     onSuccess: () => {
       message.success(t('Attribute created successfully'));
-      queryClient.invalidateQueries({ queryKey: ['attributes', defaultAttributeGroupUuid] });
+      queryClient.invalidateQueries({
+        queryKey: ['attributes-by-group', defaultAttributeGroupUuid],
+      });
       onClose();
       form.resetFields();
     },
@@ -52,7 +54,9 @@ const AddEditAttributeModal = ({
     mutationFn: (data: ReqAttributeUpdate) => attributeApi.update(data),
     onSuccess: () => {
       message.success(t('Attribute updated successfully'));
-      queryClient.invalidateQueries({ queryKey: ['attributes', defaultAttributeGroupUuid] });
+      queryClient.invalidateQueries({
+        queryKey: ['attributes-by-group', defaultAttributeGroupUuid],
+      });
       queryClient.invalidateQueries({ queryKey: ['attribute', attributeUuid] });
       onClose();
     },
@@ -64,9 +68,9 @@ const AddEditAttributeModal = ({
   useEffect(() => {
     if (attributeData && open) {
       form.setFieldsValue({
-        key_uzl: attributeData.key?.uzl,
-        key_uzc: attributeData.key?.uzc,
-        key_ru: attributeData.key?.ru,
+        name_uzl: attributeData.name?.uzl,
+        name_uzc: attributeData.name?.uzc,
+        name_ru: attributeData.name?.ru,
         isMain: attributeData.isMain,
         orderNumber: attributeData.orderNumber,
       });
@@ -80,10 +84,10 @@ const AddEditAttributeModal = ({
       const values = await form.validateFields();
 
       const payload = {
-        key: {
-          uzl: values.key_uzl,
-          uzc: values.key_uzc,
-          ru: values.key_ru,
+        name: {
+          uzl: values.name_uzl,
+          uzc: values.name_uzc,
+          ru: values.name_ru,
         },
         isMain: values.isMain || false,
         orderNumber: values.orderNumber || 0,
@@ -120,8 +124,8 @@ const AddEditAttributeModal = ({
           />
 
           <TranslatedTextInput
-            name="key"
-            label={t('Key')}
+            name="name"
+            label={t('Name')}
             required
             type="input"
             activeLang={activeLang}

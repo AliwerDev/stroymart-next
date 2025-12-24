@@ -1,12 +1,12 @@
 'use client';
-import { PencilIcon, PlusIcon, TrashIcon } from '@/components/icons';
+import { EyeIcon, PencilIcon, PlusIcon, TrashIcon } from '@/components/icons';
 import PageHeader from '@/components/landing/PageHeader';
 import { filterGroupApi } from '@/data/filter-group/filter-group.api';
 import { filterApi } from '@/data/filter/filter.api';
 import { ResFilterOne } from '@/data/filter/filter.types';
 import useGetTranslatedWord from '@/hooks/useGetTranslatedWord';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Button, Modal, Table, message } from 'antd';
+import { Button, Image, Modal, Table, message } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
@@ -86,10 +86,26 @@ export default function FiltersPage({ params }: FiltersPageProps) {
       render: (_: ResFilterOne['name'], record: ResFilterOne) => getWord(record, 'name'),
     },
     {
-      title: t('Icon URL'),
+      title: t('Icon'),
       dataIndex: 'iconUrl',
       key: 'iconUrl',
-      width: 150,
+      width: 100,
+      align: 'center',
+      render: (iconUrl: string) =>
+        iconUrl ? (
+          <Image
+            src={iconUrl}
+            alt="icon"
+            width={40}
+            height={40}
+            className="object-cover rounded"
+            preview={{
+              mask: <EyeIcon className="w-4 h-4" />,
+            }}
+          />
+        ) : (
+          '-'
+        ),
     },
     {
       title: t('Order'),

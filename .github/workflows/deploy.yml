@@ -38,7 +38,7 @@ jobs:
           ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
             set -e
             echo "===== DEPLOY START: $(date) ====="
-            cd /var/www/lg-admin-next
+            cd /var/www/stroymart-next
 
             echo "--- Pull latest code ---"
             git fetch origin main

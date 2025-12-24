@@ -1,9 +1,20 @@
 import request from '@/lib/request';
+import { PageableData, PaginationParams } from '@/types/pagination';
 import { ReqAttributeCreate, ReqAttributeUpdate, ResAttributeOne } from './attribute.types';
 
 export const attributeApi = {
-  getAll: async (attributeGroupUuid: string): Promise<ResAttributeOne[]> => {
+  getAll: async (params: PaginationParams): Promise<PageableData<ResAttributeOne>> => {
     const response = await request.get('/attribute/get/list', {
+      params: {
+        page: params.page,
+        size: params.size,
+      },
+    });
+    return response.data;
+  },
+
+  getAllByGroup: async (attributeGroupUuid: string): Promise<ResAttributeOne[]> => {
+    const response = await request.get('/attribute/get/list/by-group', {
       params: { attributeGroupUuid },
     });
     return response.data;
