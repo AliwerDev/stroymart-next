@@ -1,16 +1,14 @@
 'use client';
-import FormLanguageTabs from '@/components/common/FormLanguageTabs';
-import TranslatedTextInput from '@/components/common/TranslatedTextInput/TranslatedTextInput';
 import PageHeader from '@/components/landing/PageHeader';
 import { categoryApi } from '@/data/category/category.api';
-import { CategoryStatusEnum, ReqCategoryUpdate } from '@/data/category/category.types';
-import { Language } from '@/data/common/common.types';
+import { ReqCategoryUpdate } from '@/data/category/category.types';
 import useGetTranslatedWord from '@/hooks/useGetTranslatedWord';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Button, Form, Input, InputNumber, Select, Spin, message } from 'antd';
-import { useLocale, useTranslations } from 'next-intl';
+import { Button, Form, Spin, message } from 'antd';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import CategoryForm from '../_components/CategoryForm';
 
 interface EditCategoryPageProps {
   params: {
@@ -20,12 +18,10 @@ interface EditCategoryPageProps {
 
 export default function EditCategoryPage({ params }: EditCategoryPageProps) {
   const t = useTranslations();
-  const locale = useLocale();
   const router = useRouter();
   const getWord = useGetTranslatedWord();
   const [form] = Form.useForm();
   const queryClient = useQueryClient();
-  const [activeLang, setActiveLang] = useState<Language>('uzl');
 
   const { data: categoryData, isLoading: isLoadingCategory } = useQuery({
     queryKey: ['category', params.uuid],
@@ -116,13 +112,6 @@ export default function EditCategoryPage({ params }: EditCategoryPageProps) {
     }
   };
 
-  const parentCategoryOptions = categories
-    ?.filter((cat) => cat.uuid !== params.uuid)
-    .map((cat) => ({
-      label: locale === 'uz' ? cat.name.uzl : cat.name.ru,
-      value: cat.uuid,
-    }));
-
   if (isLoadingCategory) {
     return (
       <div className="flex justify-center items-center h-96">
@@ -139,104 +128,8 @@ export default function EditCategoryPage({ params }: EditCategoryPageProps) {
           { label: t('Categories'), href: '/management/catalog/categories' },
           { label: categoryData ? getWord(categoryData, 'name') : '...' },
         ]}
-      />
-
-      <div className="mt-4 bg-white rounded-lg">
-        <Form form={form} layout="vertical">
-          <FormLanguageTabs
-            activeLang={activeLang}
-            onLanguageChange={setActiveLang}
-            className="mb-4"
-          />
-
-          <TranslatedTextInput
-            name="name"
-            label={t('Name')}
-            required
-            type="input"
-            activeLang={activeLang}
-          />
-
-          <TranslatedTextInput
-            name="description"
-            label={t('Description')}
-            type="textarea"
-            rows={3}
-            activeLang={activeLang}
-          />
-
-          <TranslatedTextInput
-            name="contentDescription"
-            label={t('Content Description')}
-            type="textarea"
-            rows={3}
-            activeLang={activeLang}
-          />
-
-          <TranslatedTextInput
-            name="ceoContent"
-            label={t('CEO Content')}
-            type="textarea"
-            rows={2}
-            activeLang={activeLang}
-          />
-
-          <div className="grid grid-cols-2 gap-4">
-            <Form.Item
-              label={t('Icon URL')}
-              name="iconUrl"
-              rules={[{ required: true, message: t('Required field') }]}
-            >
-              <Input placeholder={t('Enter icon URL')} size="large" />
-            </Form.Item>
-
-            <Form.Item
-              label={t('Banner URL')}
-              name="bannerUrl"
-              rules={[{ required: true, message: t('Required field') }]}
-            >
-              <Input placeholder={t('Enter banner URL')} size="large" />
-            </Form.Item>
-          </div>
-
-          <div className="grid grid-cols-4 gap-4">
-            <Form.Item
-              label={t('Status')}
-              name="status"
-              rules={[{ required: true, message: t('Required field') }]}
-            >
-              <Select
-                size="large"
-                options={[
-                  { label: 'ACTIVE', value: CategoryStatusEnum.ACTIVE },
-                  { label: 'INACTIVE', value: CategoryStatusEnum.INACTIVE },
-                ]}
-              />
-            </Form.Item>
-
-            <Form.Item
-              label={t('Percent')}
-              name="percent"
-              rules={[{ required: true, message: t('Required field') }]}
-            >
-              <InputNumber size="large" min={0} max={100} className="w-full!" />
-            </Form.Item>
-
-            <Form.Item label={t('Order Number')} name="orderNumber">
-              <InputNumber size="large" min={0} className="w-full!" />
-            </Form.Item>
-
-            <Form.Item label={t('Parent Category')} name="parentCategoryUuid">
-              <Select
-                size="large"
-                options={parentCategoryOptions}
-                placeholder={t('Select parent category')}
-                allowClear
-              />
-            </Form.Item>
-          </div>
-
-          <div className="flex gap-2 justify-end mt-6">
+        actions={
+          <div className="flex gap-2">
             <Button size="large" onClick={() => router.back()}>
               {t('Cancel')}
             </Button>
@@ -249,7 +142,11 @@ export default function EditCategoryPage({ params }: EditCategoryPageProps) {
               {t('Update')}
             </Button>
           </div>
-        </Form>
+        }
+      />
+
+      <div className="mt-4">
+        <CategoryForm form={form} initialData={categoryData} parentCategories={categories} />
       </div>
     </div>
   );

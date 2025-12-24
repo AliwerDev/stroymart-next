@@ -1,23 +1,18 @@
 'use client';
-import FormLanguageTabs from '@/components/common/FormLanguageTabs';
-import TranslatedTextInput from '@/components/common/TranslatedTextInput/TranslatedTextInput';
 import PageHeader from '@/components/landing/PageHeader';
 import { categoryApi } from '@/data/category/category.api';
-import { CategoryStatusEnum, ReqCategoryCreate } from '@/data/category/category.types';
-import { Language } from '@/data/common/common.types';
+import { ReqCategoryCreate } from '@/data/category/category.types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Button, Form, Input, InputNumber, Select, message } from 'antd';
-import { useLocale, useTranslations } from 'next-intl';
+import { Button, Form, message } from 'antd';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import CategoryForm from '../_components/CategoryForm';
 
 export default function CreateCategoryPage() {
   const t = useTranslations();
-  const locale = useLocale();
   const router = useRouter();
   const [form] = Form.useForm();
   const queryClient = useQueryClient();
-  const [activeLang, setActiveLang] = useState<Language>('uzl');
 
   const { data: categories } = useQuery({
     queryKey: ['categories'],
@@ -76,11 +71,6 @@ export default function CreateCategoryPage() {
     }
   };
 
-  const parentCategoryOptions = categories?.map((cat) => ({
-    label: locale === 'uz' ? cat.name.uzl : cat.name.ru,
-    value: cat.uuid,
-  }));
-
   return (
     <div>
       <PageHeader
@@ -89,104 +79,8 @@ export default function CreateCategoryPage() {
           { label: t('Categories'), href: '/management/catalog/categories' },
           { label: t('Create') },
         ]}
-      />
-
-      <div className="mt-4 bg-white rounded-lg">
-        <Form form={form} layout="vertical" initialValues={{ status: CategoryStatusEnum.ACTIVE }}>
-          <FormLanguageTabs
-            activeLang={activeLang}
-            onLanguageChange={setActiveLang}
-            className="mb-4"
-          />
-
-          <Form.Item label={t('Parent Category')} name="parentCategoryUuid">
-            <Select
-              size="large"
-              options={parentCategoryOptions}
-              placeholder={t('Select parent category')}
-              allowClear
-            />
-          </Form.Item>
-
-          <TranslatedTextInput
-            name="name"
-            label={t('Name')}
-            required
-            type="input"
-            activeLang={activeLang}
-          />
-
-          <TranslatedTextInput
-            name="description"
-            label={t('Description')}
-            type="textarea"
-            rows={3}
-            activeLang={activeLang}
-          />
-
-          <TranslatedTextInput
-            name="contentDescription"
-            label={t('Content Description')}
-            type="textarea"
-            rows={3}
-            activeLang={activeLang}
-          />
-
-          <TranslatedTextInput
-            name="ceoContent"
-            label={t('CEO Content')}
-            type="textarea"
-            rows={2}
-            activeLang={activeLang}
-          />
-
-          <div className="grid grid-cols-2 gap-4">
-            <Form.Item
-              label={t('Icon URL')}
-              name="iconUrl"
-              rules={[{ required: true, message: t('Required field') }]}
-            >
-              <Input placeholder={t('Enter icon URL')} size="large" />
-            </Form.Item>
-
-            <Form.Item
-              label={t('Banner URL')}
-              name="bannerUrl"
-              rules={[{ required: true, message: t('Required field') }]}
-            >
-              <Input placeholder={t('Enter banner URL')} size="large" />
-            </Form.Item>
-          </div>
-
-          <div className="grid grid-cols-3 gap-4">
-            <Form.Item
-              label={t('Status')}
-              name="status"
-              rules={[{ required: true, message: t('Required field') }]}
-            >
-              <Select
-                size="large"
-                options={[
-                  { label: 'ACTIVE', value: CategoryStatusEnum.ACTIVE },
-                  { label: 'INACTIVE', value: CategoryStatusEnum.INACTIVE },
-                ]}
-              />
-            </Form.Item>
-
-            <Form.Item
-              label={t('Percent')}
-              name="percent"
-              rules={[{ required: true, message: t('Required field') }]}
-            >
-              <InputNumber size="large" min={0} max={100} className="w-full!" />
-            </Form.Item>
-
-            <Form.Item label={t('Order Number')} name="orderNumber">
-              <InputNumber size="large" min={0} className="w-full!" />
-            </Form.Item>
-          </div>
-
-          <div className="flex gap-2 justify-end mt-6">
+        actions={
+          <div className="flex gap-2">
             <Button size="large" onClick={() => router.back()}>
               {t('Cancel')}
             </Button>
@@ -199,7 +93,11 @@ export default function CreateCategoryPage() {
               {t('Create')}
             </Button>
           </div>
-        </Form>
+        }
+      />
+
+      <div className="mt-4">
+        <CategoryForm form={form} parentCategories={categories} />
       </div>
     </div>
   );
