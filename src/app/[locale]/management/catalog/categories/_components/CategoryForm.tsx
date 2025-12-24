@@ -62,18 +62,16 @@ const CategoryForm = ({ form, initialData, parentCategories }: CategoryFormProps
       />
 
       <TranslatedTextInput
+        type="textarea"
         name="contentDescription"
         label={t('Content Description')}
-        type="textarea"
-        rows={3}
         activeLang={activeLang}
       />
 
       <TranslatedTextInput
+        type="textarea"
         name="ceoContent"
         label={t('CEO Content')}
-        type="textarea"
-        rows={2}
         activeLang={activeLang}
       />
 

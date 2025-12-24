@@ -23,6 +23,7 @@ const useSidebarMenu = () => {
       subItems: [
         { name: t('Categories'), path: '/management/catalog/categories' },
         { name: t('Filters'), path: '/management/catalog/filters' },
+        { name: t('Products'), path: '/management/catalog/products' },
         { name: t('Attribute groups'), path: '/management/catalog/attribute-groups' },
         { name: t('Attributes'), path: '/management/catalog/attributes' },
         // { name: t('Options'), path: '/management/catalog/options' },
