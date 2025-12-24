@@ -130,15 +130,8 @@ export default function EditCategoryPage({ params }: EditCategoryPageProps) {
         ]}
         actions={
           <div className="flex gap-2">
-            <Button size="large" onClick={() => router.back()}>
-              {t('Cancel')}
-            </Button>
-            <Button
-              type="primary"
-              size="large"
-              onClick={handleSubmit}
-              loading={updateMutation.isPending}
-            >
+            <Button onClick={() => router.back()}>{t('Cancel')}</Button>
+            <Button type="primary" onClick={handleSubmit} loading={updateMutation.isPending}>
               {t('Update')}
             </Button>
           </div>

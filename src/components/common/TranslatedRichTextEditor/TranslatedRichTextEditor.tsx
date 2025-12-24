@@ -76,7 +76,7 @@ const TranslatedRichTextEditor = ({
             modules={modules}
             formats={formats}
             placeholder={placeholder}
-            style={{ height: `${height}px`, marginBottom: '42px' }}
+            style={{ height: `${height}px`, marginBottom: '42px', borderRadius: '8px' }}
           />
         </Form.Item>
 
