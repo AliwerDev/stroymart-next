@@ -9,16 +9,12 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Button, Image, Modal, Table, message } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { useTranslations } from 'next-intl';
+import { useParams } from 'next/navigation';
 import { useState } from 'react';
 import AddEditFilterModal from '../_components/AddEditFilterModal';
 
-interface FiltersPageProps {
-  params: {
-    uuid: string;
-  };
-}
-
-export default function FiltersPage({ params }: FiltersPageProps) {
+export default function FiltersPage() {
+  const params = useParams<{ uuid: string }>();
   const t = useTranslations();
   const getWord = useGetTranslatedWord();
   const queryClient = useQueryClient();

@@ -9,16 +9,12 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Button, Modal, Table, message } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { useTranslations } from 'next-intl';
+import { useParams } from 'next/navigation';
 import { useState } from 'react';
 import AddEditAttributeModal from '../_components/AddEditAttributeModal';
 
-interface AttributesPageProps {
-  params: {
-    uuid: string;
-  };
-}
-
-export default function AttributesPage({ params }: AttributesPageProps) {
+export default function AttributesPage() {
+  const params = useParams<{ uuid: string }>();
   const t = useTranslations();
   const getWord = useGetTranslatedWord();
   const queryClient = useQueryClient();

@@ -10,10 +10,9 @@ import { useEffect } from 'react';
 import ProductForm from '../_components/ProductForm';
 
 export default function EditProductPage() {
+  const { uuid } = useParams<{ uuid: string }>();
   const t = useTranslations();
   const router = useRouter();
-  const params = useParams();
-  const uuid = params.uuid as string;
   const [form] = Form.useForm();
   const queryClient = useQueryClient();
 

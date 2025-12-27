@@ -6,17 +6,12 @@ import useGetTranslatedWord from '@/hooks/useGetTranslatedWord';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Button, Form, Spin, message } from 'antd';
 import { useTranslations } from 'next-intl';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import CategoryForm from '../_components/CategoryForm';
 
-interface EditCategoryPageProps {
-  params: {
-    uuid: string;
-  };
-}
-
-export default function EditCategoryPage({ params }: EditCategoryPageProps) {
+export default function EditCategoryPage() {
+  const params = useParams<{ uuid: string }>();
   const t = useTranslations();
   const router = useRouter();
   const getWord = useGetTranslatedWord();
