@@ -12,7 +12,7 @@ export default function ManagementLayout({ children }: { children: React.ReactNo
   const mainContentMargin = isMobileOpen
     ? 'ml-0'
     : isExpanded || isHovered
-      ? 'lg:ml-[290px]'
+      ? 'lg:ml-[250px]'
       : 'lg:ml-[90px]';
 
   return (

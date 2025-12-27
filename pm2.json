@@ -8,7 +8,10 @@
       "exec_mode": "cluster",
       "cwd": "./",
       "env": {
-        "PORT": "3123"
+        "PORT": "3123",
+        "NEXT_PUBLIC_API_URL": "https://stroy.joynoma.uz/api/v1",
+        "NEXTAUTH_SECRET": "61fa106f4199eb02d7114fd21d47d22a33d8617403c9feb46aafa85aeb87106212312",
+        "NEXTAUTH_URL": "http://localhost:3123"
       }
     }
   ]

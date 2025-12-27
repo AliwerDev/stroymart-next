@@ -10,12 +10,12 @@ const AntdProvider = ({ children }: { children: ReactNode }) => {
       <ConfigProvider
         theme={{
           token: {
-            colorPrimary: '#389dd1',
-            colorInfo: '#389dd1',
-            colorSuccess: '#12b76a',
-            colorWarning: '#f79009',
-            colorError: '#f04438',
-            borderRadius: 8,
+            // colorPrimary: '#389dd1',
+            // colorInfo: '#389dd1',
+            // colorSuccess: '#12b76a',
+            // colorWarning: '#f79009',
+            // colorError: '#f04438',
+            borderRadius: 6,
             fontFamily:
               'var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
           },

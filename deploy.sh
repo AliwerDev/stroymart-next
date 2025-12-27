@@ -6,10 +6,10 @@ STAGE=$1
 
 if [ "$STAGE" == "dev" ]; then
   BRANCH="dev"
-  PM2_NAME="lg-admin-dev"
+  PM2_NAME="stroymart-dev"
 elif [ "$STAGE" == "prod" ]; then
   BRANCH="main"
-  PM2_NAME="lg-admin"
+  PM2_NAME="stroymart"
 else
   echo "Usage: $0 dev|prod"
   exit 1
@@ -22,7 +22,7 @@ echo "PM2 process: $PM2_NAME"
 echo "=============================="
 
 # Go to project directory
-cd /var/www/lg-admin-next || { echo "Directory not found!"; exit 1; }
+cd /var/www/stroymart-next || { echo "Directory not found!"; exit 1; }
 
 # Ensure proper permissions
 sudo chown -R $(whoami):$(whoami) .

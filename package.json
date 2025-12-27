@@ -9,7 +9,7 @@
     "lint": "eslint . --ext js,jsx,ts,tsx",
     "format": "prettier --write .",
     "prepare": "husky",
-    "deploy:prod": "bash ./deploy.sh prod",
+    "deploy": "bash ./deploy.sh prod",
     "keys": "node scripts/extract-keys.mjs"
   },
   "dependencies": {
