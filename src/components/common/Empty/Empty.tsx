@@ -1,4 +1,4 @@
-import Typography from '@/components/ui/Typography/Typography';
+import { Typography } from 'antd';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
@@ -22,7 +22,7 @@ const Empty = ({ text, height = 280, hideText = false }: EmptyProps) => {
         />
       </div>
       {!hideText && (
-        <Typography className="max-w-[300px] text-center" variant="subtitle-sm-16" color="text-3">
+        <Typography className="max-w-[300px] text-center text-text3">
           {text || t('Data not found')}
         </Typography>
       )}
