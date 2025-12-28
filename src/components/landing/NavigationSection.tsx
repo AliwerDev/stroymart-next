@@ -1,13 +1,15 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { ChevronDownIcon, PhoneIcon, SearchIcon } from '../icons';
+import LanguageSwitcher from '../common/LanguageSwitcher';
+import { PhoneIcon, SearchIcon } from '../icons';
 import BurgerIcon from '../icons/BurgerIcon';
 import HeartIcon from '../icons/HeartIcon';
 import ShoppingCardIcon from '../icons/ShoppingCardIcon';
+import Button from '../ui/Button';
 
 const NavigationSection = () => {
   const t = useTranslations();
@@ -72,7 +74,7 @@ const NavigationSection = () => {
           className="flex-1 flex items-center gap-3 h-10 px-3 py-2 bg-backgroundsecondary rounded-[10px] border border-strokestroke-light"
           role="search"
         >
-          <SearchIcon className="w-5 h-5 shrink-0" aria-hidden="true" />
+          <SearchIcon className="w-5 h-5 shrink-0" />
           <label htmlFor="search-input" className="sr-only">
             {t('Қидирув')}
           </label>
@@ -88,93 +90,54 @@ const NavigationSection = () => {
         </form>
 
         <div className="flex items-center gap-1.5">
-          <a
-            href="tel:+998931231111"
-            className="flex items-center gap-2 h-10 px-3 bg-backgroundsecondary rounded-[10px] border border-strokestroke-light hover:bg-gray-100 transition-colors"
-            aria-label="Телефон +998 93 123 11 11"
-          >
-            <PhoneIcon className="w-6 h-6 shrink-0" aria-hidden="true" />
-            <span className="text-base font-medium text-gray-700 whitespace-nowrap">
-              +998 93 123 11 11
-            </span>
-          </a>
+          <Link href="tel:+998931231111" aria-label="Телефон +998 93 123 11 11">
+            <Button variant="gray">
+              <PhoneIcon className="w-5 h-5" />
+              <span className="text-base font-medium text-gray-700 whitespace-nowrap">
+                +998 93 123 11 11
+              </span>
+            </Button>
+          </Link>
 
-          <button
-            onClick={handleWishlistClick}
-            className="flex items-center justify-center w-10 h-10 bg-backgroundsecondary rounded-lg border border-strokestroke-light hover:bg-gray-100 transition-colors"
-            aria-label={`${t('Севимлилар')}${wishlistCount > 0 ? `, ${wishlistCount} та маҳсулот` : ''}`}
-            type="button"
-          >
-            <HeartIcon className="w-5 h-5" aria-hidden="true" />
+          <Button onClick={handleWishlistClick} variant="gray">
+            <HeartIcon className="w-5 h-5" />
             {wishlistCount > 0 && <span className="sr-only">{wishlistCount} та маҳсулот</span>}
-          </button>
+          </Button>
 
-          <button
-            onClick={handleCartClick}
-            className="flex items-center justify-center w-10 h-10 bg-backgroundsecondary rounded-lg border border-strokestroke-light hover:bg-gray-100 transition-colors"
-            aria-label={`${t('Савдо савати')}${cartCount > 0 ? `, ${cartCount} та маҳсулот` : ''}`}
-            type="button"
-          >
-            <ShoppingCardIcon className="w-5 h-5" aria-hidden="true" />
+          <Button onClick={handleCartClick} variant="gray">
+            <ShoppingCardIcon className="w-5 h-5" />
             {cartCount > 0 && <span className="sr-only">{cartCount} та маҳсулот</span>}
-          </button>
+          </Button>
 
-          <div className="flex items-center gap-2 h-10 px-3 bg-backgroundsecondary rounded-[10px] border border-strokestroke-light">
-            <Image
-              width={24}
-              height={16}
-              className="w-6 h-4"
-              alt="Flag UZB"
-              src="/images/flags/uz.png"
-            />
-            <button
-              className="flex items-center gap-1.5 hover:opacity-80 transition-opacity"
-              type="button"
-              aria-label={t('Тилни танланг')}
-            >
-              <span className="text-base font-medium text-textthird whitespace-nowrap">Ўзб</span>
-              <ChevronDownIcon className="w-[18px] h-[18px]" aria-hidden="true" />
-            </button>
-          </div>
+          <LanguageSwitcher />
 
-          <button
-            onClick={handleLoginClick}
-            className="h-10 px-4 py-2 rounded-xl overflow-hidden bg-primary hover:opacity-90 transition-opacity shadow-[0px_2px_4px_rgba(116,208,255,0.42)]"
-            type="button"
-            aria-label={t('Тизимга кириш')}
-          >
-            <span className="text-base font-bold text-white whitespace-nowrap">
+          <Link href="/auth/seller/login">
+            <Button onClick={handleLoginClick} variant="primary" aria-label={t('Тизимга кириш')}>
               {t('Тизимга кириш')}
-            </span>
-          </button>
+            </Button>
+          </Link>
         </div>
       </div>
 
-      <nav className="flex items-center gap-6" aria-label="Асосий навигация">
-        <button
-          onClick={handleCatalogClick}
-          className="flex items-center justify-center gap-2 w-[126px] h-12 px-4 py-2 rounded-xl overflow-hidden bg-primary hover:opacity-90 transition-opacity shadow-[0px_2px_4px_rgba(116,208,255,0.42)]"
-          type="button"
-          aria-label={t('Коталог')}
-        >
+      <nav className="flex items-center gap-4" aria-label="Асосий навигация">
+        <Button onClick={handleCatalogClick} variant="secondary" aria-label={t('Коталог')}>
           <BurgerIcon className="w-5 h-5 text-white" />
           <span className="text-base font-bold text-white whitespace-nowrap">{t('Коталог')}</span>
-        </button>
+        </Button>
 
-        <ul className="flex items-center gap-6">
+        <ul className="flex items-center gap-2">
           {navigationItems.map((item) => (
             <li key={item.id}>
-              <button
+              <Button
                 onClick={() => handleNavClick(item.id)}
-                className="relative py-2 text-base font-medium text-textprimary hover:opacity-80 transition-opacity"
-                type="button"
+                variant="gray"
                 aria-current={activeNavItem === item.id ? 'page' : undefined}
               >
                 {item.label}
                 {activeNavItem === item.id && (
                   <span className="absolute left-0 bottom-0 w-full h-0.5 bg-blue-500 rounded-full" />
                 )}
-              </button>
+              </Button>
             </li>
           ))}
         </ul>

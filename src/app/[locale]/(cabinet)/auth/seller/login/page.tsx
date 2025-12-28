@@ -2,9 +2,9 @@
 
 import Button from '@/components/ui/Button';
 import { sellerApi } from '@/data/seller/seller.api';
-import { useCustomMutation } from '@/hooks/useMutation';
 import { useRouter } from '@/i18n/navigation';
 import { getErrorMessage } from '@/lib/utils';
+import { useMutation } from '@tanstack/react-query';
 import { Form, Input } from 'antd';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
@@ -20,7 +20,7 @@ const SellerLoginPage = () => {
   const [form] = Form.useForm<SellerInitFormValues>();
   const [loading, setLoading] = useState(false);
 
-  const initMutation = useCustomMutation({
+  const initMutation = useMutation({
     mutationKey: ['seller-init'],
     mutationFn: async (values: SellerInitFormValues) => {
       return await sellerApi.init({
@@ -29,7 +29,6 @@ const SellerLoginPage = () => {
     },
     onSuccess: (data) => {
       console.log(data);
-
       toast.success(data.message || t('Код отправлен на ваш номер'));
       sessionStorage.setItem('seller_phone', form.getFieldValue('phoneNumber'));
       router.push('/auth/seller/confirm');
