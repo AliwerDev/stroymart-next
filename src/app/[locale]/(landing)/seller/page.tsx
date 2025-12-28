@@ -34,7 +34,7 @@ export default async function SellerPage() {
             <Link href="/auth/login">
               <Button variant="gray">{t('Кириш')}</Button>
             </Link>
-            <Link href="/auth/login-seller">
+            <Link href="/auth/seller/login">
               <Button variant="primary">{t('Сотувчи бўлиш')}</Button>
             </Link>
           </div>
@@ -51,9 +51,11 @@ export default async function SellerPage() {
               <div className="justify-start text-white/80 text-lg leading-[28px] mb-4 font-normal">
                 {t('seller_cover_description')}
               </div>
-              <Button variant="primary" className="w-fit">
-                {t('Ҳозир савдони бошланг')}
-              </Button>
+              <Link href="/auth/seller/login">
+                <Button variant="primary" className="w-fit">
+                  {t('Ҳозир савдони бошланг')}
+                </Button>
+              </Link>
             </div>
             <div className="md:block hidden flex-1 relative">
               <Image
@@ -128,9 +130,11 @@ export default async function SellerPage() {
             <div className="justify-start text-text1/80 text-lg leading-[28px] mb-4 font-normal">
               {t('seller_work_description')}
             </div>
-            <Button variant="primary" className="w-fit">
-              {t('Сотувчи бўлиш')}
-            </Button>
+            <Link href="/auth/seller/login">
+              <Button variant="primary" className="w-fit">
+                {t('Сотувчи бўлиш')}
+              </Button>
+            </Link>
           </div>
 
           <div className="absolute top-1/2 right-[650px] -translate-y-1/2">
