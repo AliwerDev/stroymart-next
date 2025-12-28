@@ -15,35 +15,35 @@ const useSidebarMenu = () => {
     {
       icon: <StoreLocationIcon />,
       name: t('Home'),
-      path: '/management',
+      path: '/dashboard',
     },
     {
       icon: <FolderIcon />,
       name: t('Catalog'),
       subItems: [
-        { name: t('Categories'), path: '/management/catalog/categories' },
-        { name: t('Filters'), path: '/management/catalog/filters' },
-        { name: t('Products'), path: '/management/catalog/products' },
-        { name: t('Attribute groups'), path: '/management/catalog/attribute-groups' },
-        { name: t('Attributes'), path: '/management/catalog/attributes' },
-        // { name: t('Options'), path: '/management/catalog/options' },
+        { name: t('Categories'), path: '/dashboard/catalog/categories' },
+        { name: t('Filters'), path: '/dashboard/catalog/filters' },
+        { name: t('Products'), path: '/dashboard/catalog/products' },
+        { name: t('Attribute groups'), path: '/dashboard/catalog/attribute-groups' },
+        { name: t('Attributes'), path: '/dashboard/catalog/attributes' },
+        // { name: t('Options'), path: '/dashboard/catalog/options' },
       ],
     },
     // {
     //   icon: <ProductIcon />,
     //   name: t('Products'),
     //   subItems: [
-    //     { name: t('Product confirmation'), path: '/management/products/confirmation' },
-    //     { name: t('Suppliers'), path: '/management/products/suppliers' },
-    //     { name: t('Manufacturers'), path: '/management/products/manufacturers' },
-    //     { name: t('Filte rs'), path: '/management/products/filters' },
-    //     { name: 'Кэшбэк', path: '/management/products/cashback' },
+    //     { name: t('Product confirmation'), path: '/dashboard/products/confirmation' },
+    //     { name: t('Suppliers'), path: '/dashboard/products/suppliers' },
+    //     { name: t('Manufacturers'), path: '/dashboard/products/manufacturers' },
+    //     { name: t('Filte rs'), path: '/dashboard/products/filters' },
+    //     { name: 'Кэшбэк', path: '/dashboard/products/cashback' },
     //   ],
     // },
     // {
     //   icon: <ShoppingCardIcon />,
     //   name: t('Sales'),
-    //   path: '/management/sales',
+    //   path: '/dashboard/sales',
     // },
   ];
   return menus;

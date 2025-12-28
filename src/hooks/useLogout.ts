@@ -22,9 +22,9 @@ export function useLogout() {
         setLoading(true);
         try {
           await signOut({ redirect: false });
-          window.location.href = `/${locale}/auth/login-management`;
+          window.location.href = `/${locale}/auth/login`;
         } catch {
-          window.location.href = `/${locale}/auth/login-management`;
+          window.location.href = `/${locale}/auth/login`;
         } finally {
           setLoading(false);
         }

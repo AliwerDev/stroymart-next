@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import usePageFilters from '@/hooks/usePageFilters';
 import { DatePicker, Input, Select } from 'antd';
-import Search from '../Search';
 
 export interface FilterOption {
   label: string;
@@ -88,12 +87,11 @@ const PageFilter = ({
         );
       case 'search':
         return (
-          <Search
-            value={values[filter.key] || undefined}
-            onChange={(value) => onFilterChange(filter.key, value)}
+          <Input
+            value={values[filter.key] || ''}
+            onChange={(e) => onFilterChange(filter.key, e.target.value)}
             placeholder={filter.placeholder}
             className="w-full"
-            queryKey={filter.key}
           />
         );
       case 'text':

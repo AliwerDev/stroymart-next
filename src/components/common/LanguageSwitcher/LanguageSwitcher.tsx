@@ -1,6 +1,7 @@
 'use client';
 
 import ChevronDownIcon from '@/components/icons/ChevronDownIcon';
+import Button from '@/components/ui/Button';
 import { usePathname, useRouter } from '@/i18n/navigation';
 import { Dropdown, MenuProps } from 'antd';
 import Image from 'next/image';
@@ -71,19 +72,17 @@ const LanguageSwitcher = () => {
 
   return (
     <Dropdown menu={{ items: menuItems }} trigger={['click']} placement="bottomRight">
-      <div className="flex gap-1 items-center w-fit">
-        <div className="flex items-center gap-2">
-          <Image
-            src={currentLanguage?.flag || ''}
-            alt={currentLanguage?.name || ''}
-            width={18}
-            height={18}
-            className="object-cover rounded-full"
-          />
-          <span className="text-text-1 md:inline hidden">{currentLanguage?.name}</span>
-        </div>
+      <Button variant="secondary">
+        <Image
+          src={currentLanguage?.flag || ''}
+          alt={currentLanguage?.name || ''}
+          width={24}
+          height={24}
+          className="object-cover w-6 h-4 rounded-sm"
+        />
+        <span className="text-text-1 md:inline hidden">{currentLanguage?.name}</span>
         <ChevronDownIcon />
-      </div>
+      </Button>
     </Dropdown>
   );
 };

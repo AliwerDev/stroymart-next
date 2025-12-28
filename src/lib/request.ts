@@ -39,7 +39,7 @@ request.interceptors.response.use(
   },
   async function (error) {
     if (error.response.status === 401) {
-      window.location.href = '/auth/login-management';
+      window.location.href = '/auth/login';
       await signOut({ redirect: false });
       return;
     }

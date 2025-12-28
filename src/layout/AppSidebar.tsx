@@ -131,7 +131,7 @@ const AppSidebar: React.FC = () => {
 
   const isActive = useCallback(
     (path: string) => {
-      if (path === '/management') {
+      if (path === '/dashboard') {
         return pathWithoutLocale === path;
       }
       return pathWithoutLocale.startsWith(path);

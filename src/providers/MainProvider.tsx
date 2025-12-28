@@ -1,9 +1,8 @@
 'use client';
 
-import { ConfirmModalProvider } from '@/components/common/ConfirmModal/ConfirmModalProvider';
 import { SidebarProvider } from '@/context/SidebarContext';
 import { useLocale } from 'next-intl';
-import { ReactNode, Suspense } from 'react';
+import { ReactNode } from 'react';
 import { Toaster } from 'react-hot-toast';
 import AntdProvider from './AntdProvider';
 import IntlErrorHandlingProvider from './IntlErrorHandlingProvider';
@@ -22,13 +21,9 @@ const MainProvider = ({ children }: MainProviderProps) => {
       <ReduxProvider>
         <SessionProvider>
           <TanStackProvider>
-            <Suspense>
-              <SidebarProvider>
-                <ConfirmModalProvider>
-                  <AntdProvider>{children}</AntdProvider>
-                </ConfirmModalProvider>
-              </SidebarProvider>
-            </Suspense>
+            <SidebarProvider>
+              <AntdProvider>{children}</AntdProvider>
+            </SidebarProvider>
             <Toaster
               position="top-center"
               toastOptions={{ duration: 3000 }}
