@@ -1,46 +1,70 @@
+'use client';
+
 import Link from 'next/link';
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-4">
-      <div className="text-center max-w-md">
-        {/* 404 Number */}
-        <div className="mb-8">
-          <h1 className="text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-brand-600">
-            404
-          </h1>
-        </div>
+    <main style={styles.wrapper}>
+      <section style={styles.card}>
+        <h1 style={styles.code}>404</h1>
+        <p style={styles.title}>404</p>
+        <p style={styles.subtitle}>Page not found</p>
 
-        {/* Heading */}
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Page Not Found</h2>
-
-        {/* Description */}
-        <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-          Sorry, the page you&apos;re looking for doesn&apos;t exist. It might have been moved or
-          deleted.
-        </p>
-
-        {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button
-            onClick={() => window.history.back()}
-            className="px-6 py-3 rounded-lg border-2 border-gray-300 text-gray-700 font-semibold hover:border-gray-400 hover:bg-gray-50 transition-all duration-200"
-          >
-            Go Back
-          </button>
-          <Link
-            href="/"
-            className="px-6 py-3 rounded-lg bg-brand-500 text-white font-semibold hover:bg-brand-600 transition-all duration-200 inline-block"
-          >
-            Go Home
+        <div style={styles.actions}>
+          <Link href="/" style={styles.primary}>
+            Home
           </Link>
         </div>
-
-        {/* Decorative Element */}
-        <div className="mt-16 flex justify-center">
-          <div className="w-32 h-32 bg-gradient-to-br from-brand-100 to-brand-50 rounded-full opacity-50 blur-2xl"></div>
-        </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
+
+const styles: Record<string, React.CSSProperties> = {
+  wrapper: {
+    minHeight: '70vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#ffffff',
+    fontFamily: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Inter, sans-serif',
+  },
+  card: {
+    maxWidth: 420,
+    padding: '48px 32px',
+    textAlign: 'center',
+  },
+  code: {
+    fontSize: 72,
+    fontWeight: 700,
+    margin: 0,
+    color: '#111827',
+  },
+  title: {
+    marginTop: 12,
+    marginBottom: 8,
+    fontSize: 20,
+    fontWeight: 600,
+    color: '#1f2937',
+  },
+  subtitle: {
+    fontSize: 14,
+    lineHeight: 1.6,
+    color: '#6b7280',
+    marginBottom: 32,
+  },
+  actions: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  primary: {
+    padding: '10px 18px',
+    fontSize: 14,
+    fontWeight: 500,
+    borderRadius: 6,
+    textDecoration: 'none',
+    border: '1px solid #111827',
+    backgroundColor: '#111827',
+    color: '#ffffff',
+  },
+};

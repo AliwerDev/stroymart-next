@@ -1,26 +1,29 @@
 'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ChevronDownIcon, PhoneIcon, SearchIcon } from '../icons';
 import BurgerIcon from '../icons/BurgerIcon';
 import HeartIcon from '../icons/HeartIcon';
 import ShoppingCardIcon from '../icons/ShoppingCardIcon';
 
-const navigationItems = [
-  { id: 1, label: 'Акциялар' },
-  { id: 2, label: 'Дизайнерлар' },
-  { id: 3, label: 'Сотувчи бўлиш' },
-  { id: 4, label: 'Колкулатсия' },
-  { id: 5, label: 'Алоқа' },
-  { id: 6, label: 'ФАҚ' },
-];
-
 const NavigationSection = () => {
+  const t = useTranslations();
   const [searchQuery, setSearchQuery] = useState('');
   const [activeNavItem, setActiveNavItem] = useState<number | null>(null);
   const [cartCount] = useState(0);
   const [wishlistCount] = useState(0);
+
+  const navigationItems = [
+    { id: 1, label: t('Акциялар') },
+    { id: 2, label: t('Дизайнерлар') },
+    { id: 3, label: t('Сотувчи бўлиш') },
+    { id: 4, label: t('Колкулатсия') },
+    { id: 5, label: t('Алоқа') },
+    { id: 6, label: t('ФАҚ') },
+  ];
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
@@ -53,9 +56,7 @@ const NavigationSection = () => {
 
   return (
     <header className="container py-5! px-[76px]">
-      {/* Top Bar */}
       <div className="flex items-center gap-14 w-full mb-6">
-        {/* Logo */}
         <Link href="/" aria-label="Stroyauz home">
           <Image
             alt="Stroyauz"
@@ -66,7 +67,6 @@ const NavigationSection = () => {
           />
         </Link>
 
-        {/* Search Form */}
         <form
           onSubmit={handleSearchSubmit}
           className="flex-1 flex items-center gap-3 h-10 px-3 py-2 bg-backgroundsecondary rounded-[10px] border border-strokestroke-light"
@@ -74,22 +74,20 @@ const NavigationSection = () => {
         >
           <SearchIcon className="w-5 h-5 shrink-0" aria-hidden="true" />
           <label htmlFor="search-input" className="sr-only">
-            Қидирув
+            {t('Қидирув')}
           </label>
           <input
             id="search-input"
             type="search"
             value={searchQuery}
             onChange={handleSearchChange}
-            placeholder="Қидирув"
+            placeholder={t('Қидирув')}
             className="w-full text-base text-gray-700 bg-transparent outline-none placeholder:text-gray-400"
-            aria-label="Қидирув"
+            aria-label={t('Қидирув')}
           />
         </form>
 
-        {/* Actions */}
         <div className="flex items-center gap-1.5">
-          {/* Phone */}
           <a
             href="tel:+998931231111"
             className="flex items-center gap-2 h-10 px-3 bg-backgroundsecondary rounded-[10px] border border-strokestroke-light hover:bg-gray-100 transition-colors"
@@ -101,29 +99,26 @@ const NavigationSection = () => {
             </span>
           </a>
 
-          {/* Wishlist */}
           <button
             onClick={handleWishlistClick}
             className="flex items-center justify-center w-10 h-10 bg-backgroundsecondary rounded-lg border border-strokestroke-light hover:bg-gray-100 transition-colors"
-            aria-label={`Севимлилар${wishlistCount > 0 ? `, ${wishlistCount} та маҳсулот` : ''}`}
+            aria-label={`${t('Севимлилар')}${wishlistCount > 0 ? `, ${wishlistCount} та маҳсулот` : ''}`}
             type="button"
           >
             <HeartIcon className="w-5 h-5" aria-hidden="true" />
             {wishlistCount > 0 && <span className="sr-only">{wishlistCount} та маҳсулот</span>}
           </button>
 
-          {/* Cart */}
           <button
             onClick={handleCartClick}
             className="flex items-center justify-center w-10 h-10 bg-backgroundsecondary rounded-lg border border-strokestroke-light hover:bg-gray-100 transition-colors"
-            aria-label={`Савдо савати${cartCount > 0 ? `, ${cartCount} та маҳсулот` : ''}`}
+            aria-label={`${t('Савдо савати')}${cartCount > 0 ? `, ${cartCount} та маҳсулот` : ''}`}
             type="button"
           >
             <ShoppingCardIcon className="w-5 h-5" aria-hidden="true" />
             {cartCount > 0 && <span className="sr-only">{cartCount} та маҳсулот</span>}
           </button>
 
-          {/* Language Selector */}
           <div className="flex items-center gap-2 h-10 px-3 bg-backgroundsecondary rounded-[10px] border border-strokestroke-light">
             <Image
               width={24}
@@ -135,39 +130,37 @@ const NavigationSection = () => {
             <button
               className="flex items-center gap-1.5 hover:opacity-80 transition-opacity"
               type="button"
-              aria-label="Тилни танланг"
+              aria-label={t('Тилни танланг')}
             >
               <span className="text-base font-medium text-textthird whitespace-nowrap">Ўзб</span>
               <ChevronDownIcon className="w-[18px] h-[18px]" aria-hidden="true" />
             </button>
           </div>
 
-          {/* Login Button */}
           <button
             onClick={handleLoginClick}
             className="h-10 px-4 py-2 rounded-xl overflow-hidden bg-primary hover:opacity-90 transition-opacity shadow-[0px_2px_4px_rgba(116,208,255,0.42)]"
             type="button"
-            aria-label="Тизимга кириш"
+            aria-label={t('Тизимга кириш')}
           >
-            <span className="text-base font-bold text-white whitespace-nowrap">Тизимга кириш</span>
+            <span className="text-base font-bold text-white whitespace-nowrap">
+              {t('Тизимга кириш')}
+            </span>
           </button>
         </div>
       </div>
 
-      {/* Navigation */}
       <nav className="flex items-center gap-6" aria-label="Асосий навигация">
-        {/* Catalog Button */}
         <button
           onClick={handleCatalogClick}
           className="flex items-center justify-center gap-2 w-[126px] h-12 px-4 py-2 rounded-xl overflow-hidden bg-primary hover:opacity-90 transition-opacity shadow-[0px_2px_4px_rgba(116,208,255,0.42)]"
           type="button"
-          aria-label="Коталог"
+          aria-label={t('Коталог')}
         >
           <BurgerIcon className="w-5 h-5 text-white" />
-          <span className="text-base font-bold text-white whitespace-nowrap">Коталог</span>
+          <span className="text-base font-bold text-white whitespace-nowrap">{t('Коталог')}</span>
         </button>
 
-        {/* Navigation Items */}
         <ul className="flex items-center gap-6">
           {navigationItems.map((item) => (
             <li key={item.id}>

@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Column } from '@/components/ui/Table';
 import { IFileResponse } from '@/types/file';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
@@ -187,16 +186,6 @@ export const formatMoney = (amount: number) => {
     maximumFractionDigits: 0,
   }).format(amount);
 };
-
-export const numberColumn = (page: number = 1, limit: number = 10): Column<unknown> => ({
-  header: '№',
-  key: 'key',
-  width: 50,
-  align: 'center',
-  cell: (_, __, i) => {
-    return (page - 1) * limit + i + 1;
-  },
-});
 
 export const formatPhoneNumber = (phone: string = ''): string => {
   if (!phone) return '';
