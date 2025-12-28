@@ -1,31 +1,32 @@
 'use client';
 
+import { Modal } from 'antd';
 import { signOut } from 'next-auth/react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useState } from 'react';
-import { useConfirm } from './useConfirm';
 
 export function useLogout() {
   const t = useTranslations();
-  const [loading, setLoading] = useState(false);
   const locale = useLocale();
-  const { confirm } = useConfirm();
+  const [loading, setLoading] = useState(false);
 
-  const logout = async () => {
-    await confirm({
+  const logout = () => {
+    Modal.confirm({
       title: t('Выход'),
-      message: t('Вы уверены, что хотите выйти?'),
-      confirmText: t('Выход'),
+      content: t('Вы уверены, что хотите выйти?'),
+      okText: t('Выход'),
       cancelText: t('Отмена'),
-      variant: 'warning',
-      onConfirm: async () => {
+      okType: 'danger',
+      centered: true,
+      okButtonProps: {
+        loading,
+      },
+      onOk: async () => {
         setLoading(true);
         try {
           await signOut({ redirect: false });
-          window.location.href = `/${locale}/auth/login`;
-        } catch {
-          window.location.href = `/${locale}/auth/login`;
         } finally {
+          window.location.href = `/${locale}/auth/login`;
           setLoading(false);
         }
       },

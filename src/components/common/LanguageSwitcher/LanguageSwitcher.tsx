@@ -72,7 +72,7 @@ const LanguageSwitcher = () => {
 
   return (
     <Dropdown menu={{ items: menuItems }} trigger={['click']} placement="bottomRight">
-      <Button variant="secondary">
+      <Button variant="gray">
         <Image
           src={currentLanguage?.flag || ''}
           alt={currentLanguage?.name || ''}

@@ -2,7 +2,7 @@ import { ComponentProps } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 interface ButtonProps extends Omit<ComponentProps<'button'>, 'prefix' | 'suffix' | 'icon'> {
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'gray';
   prefix?: React.ReactNode | string;
   suffix?: React.ReactNode | string;
   icon?: React.ReactNode | string;
@@ -26,8 +26,10 @@ const Button = ({
   ...rest
 }: ButtonProps) => {
   const buttonClasses = twMerge(
-    'cursor-pointer h-10 flex items-center gap-2',
-    variant === 'secondary' && 'px-3 rounded-[10px] border text-text2 border-gray-300 bg-gray-50',
+    'cursor-pointer h-10 flex items-center gap-2 hover:opacity-90',
+    variant === 'secondary' &&
+      'h-10 rounded-[10px] px-3 font-bold text-white flex items-center justify-center',
+    variant === 'gray' && 'px-3 rounded-[10px] border text-text2 border-gray-300 bg-gray-50',
 
     disabled && 'opacity-50 cursor-not-allowed',
     isLoading && 'opacity-50 cursor-not-allowed',
@@ -48,7 +50,12 @@ const Button = ({
               boxShadow: '0 2px 4px 0 rgba(116, 208, 255, 0.42)',
               padding: '3px',
             }
-          : undefined
+          : variant === 'secondary'
+            ? {
+                background: 'linear-gradient(174deg, #74D0FF 4.84%, #37A7E0 95.17%)',
+                boxShadow: '0 2px 4px 0 rgba(116, 208, 255, 0.42), 0 -5px 2px 0 #57C2F8 inset',
+              }
+            : undefined
       }
       {...rest}
     >
@@ -59,7 +66,7 @@ const Button = ({
       {icon}
       {variant === 'primary' ? (
         <span
-          className="h-full px-3 font-bold text-white flex items-center"
+          className="h-full w-full px-3 font-bold text-white flex items-center"
           style={{
             borderRadius: 10,
             background: 'linear-gradient(0deg, #74D0FF 0%, #389DD1 100%)',

@@ -67,7 +67,7 @@ const AppHeader: React.FC = () => {
         <div
           className={`${
             isApplicationMenuOpen ? 'flex' : 'hidden'
-          } items-center justify-between w-full gap-4 px-5 py-3 lg:flex shadow-theme-md lg:justify-end lg:px-0 lg:shadow-none`}
+          } items-center justify-between w-full gap-2 px-5 py-3 lg:flex shadow-theme-md lg:justify-end lg:px-0 lg:shadow-none`}
         >
           <LanguageSwitcher />
           <UserDropdown />

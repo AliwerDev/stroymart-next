@@ -29,10 +29,14 @@ export default async function SellerPage() {
           </div>
 
           <div className="flex gap-2 items-center">
-            <Button variant="secondary">{t('Сотувчи йўриқномаси')}</Button>
+            <Button variant="gray">{t('Сотувчи йўриқномаси')}</Button>
             <LanguageSwitcher />
-            <Button variant="secondary">{t('Кириш')}</Button>
-            <Button variant="primary">{t('Сотувчи бўлиш')}</Button>
+            <Link href="/auth/login">
+              <Button variant="gray">{t('Кириш')}</Button>
+            </Link>
+            <Link href="/auth/login-seller">
+              <Button variant="primary">{t('Сотувчи бўлиш')}</Button>
+            </Link>
           </div>
         </nav>
       </header>

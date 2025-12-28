@@ -3,9 +3,9 @@ import { ChevronDownIcon, LogoutIcon, PencilIcon } from '@/components/icons';
 import { Dropdown } from '@/components/ui/Dropdown/Dropdown';
 import { DropdownItem } from '@/components/ui/Dropdown/DropdownItem';
 import { useLogout } from '@/hooks/useLogout';
-import Image from 'next/image';
 import React, { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+import Button from '../ui/Button';
 
 export default function UserDropdown() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,17 +21,10 @@ export default function UserDropdown() {
   }
   return (
     <div className="relative">
-      <button
-        onClick={toggleDropdown}
-        className="flex items-center text-gray-700 dark:text-gray-400 dropdown-toggle"
-      >
-        <span className="mr-3 overflow-hidden rounded-full h-11 w-11">
-          <Image width={44} height={44} src="/images/avatar.png" alt="User" />
-        </span>
-
-        <span className="block mr-1 font-medium text-theme-sm">Musharof</span>
+      <Button variant="gray" onClick={toggleDropdown}>
+        <span className="text-text-1 md:inline hidden">{'Musharof'}</span>
         <ChevronDownIcon className={twMerge('', isOpen && 'rotate-180')} />
-      </button>
+      </Button>
 
       <Dropdown
         isOpen={isOpen}
