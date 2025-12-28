@@ -1,3 +1,4 @@
+import { PageableData, PaginationParams } from '@/types/pagination';
 import request from '@/lib/request';
 import {
   ReqSellerConfirm,
@@ -20,6 +21,12 @@ export const sellerApi = {
     return response.data;
   },
 
+  // Get all sellers with pagination
+  getAll: async (params?: PaginationParams): Promise<PageableData<ResSellerOne>> => {
+    const response = await request.get('/seller', { params });
+    return response.data;
+  },
+
   // Get current seller profile
   getProfile: async (): Promise<ResSellerOne> => {
     const response = await request.get('/seller/profile');
@@ -29,6 +36,12 @@ export const sellerApi = {
   // Update seller profile
   updateProfile: async (data: Partial<ResSellerOne>): Promise<ResStringMessage> => {
     const response = await request.put('/seller/profile', data);
+    return response.data;
+  },
+
+  // Update seller by UUID
+  update: async (uuid: string, data: Partial<ResSellerOne>): Promise<ResStringMessage> => {
+    const response = await request.put(`/seller/${uuid}`, data);
     return response.data;
   },
 

@@ -1,4 +1,4 @@
-import { FolderIcon, StoreLocationIcon } from '@/components/icons';
+import { FolderIcon, StoreLocationIcon, UserGroupIcon } from '@/components/icons';
 import { useTranslations } from 'next-intl';
 
 export type NavItem = {
@@ -28,6 +28,11 @@ const useSidebarMenu = () => {
         { name: t('Attributes'), path: '/dashboard/catalog/attributes' },
         // { name: t('Options'), path: '/dashboard/catalog/options' },
       ],
+    },
+    {
+      icon: <UserGroupIcon />,
+      name: t('Users'),
+      subItems: [{ name: t('Sellers'), path: '/dashboard/users/sellers' }],
     },
     // {
     //   icon: <ProductIcon />,

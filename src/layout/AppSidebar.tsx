@@ -62,14 +62,14 @@ const AppSidebar: React.FC = () => {
   };
 
   const renderMenuItems = (navItems: NavItem[]) => (
-    <ul className="flex flex-col">
+    <ul className="flex flex-col gap-2">
       {navItems.map((nav, index) => (
         <li key={nav.name}>
           {nav.subItems ? (
             <button
               onClick={() => handleSubmenuToggle(index)}
               className={twMerge(
-                'relative flex items-center w-full gap-2 px-3 py-2 font-medium text-base transition-colors duration-200 border-l-4 border-transparent group',
+                'relative flex items-center cursor-pointer w-full gap-2 px-3 py-2 font-medium text-base transition-colors duration-200 border-l-4 border-transparent group',
                 openSubmenu === index
                   ? 'text-brand-500 border-l-4 border-brand-500'
                   : 'text-gray-700 hover:text-gray-900',
